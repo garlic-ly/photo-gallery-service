@@ -1,17 +1,26 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "photo-gallery-service",
+  "description": "Photo gallery of Airbnb",
   "author": "",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {
-  },
-  "dependencies": {
-  },
+  "scripts": {},
+  "dependencies": {},
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-  }
+    "eslint": "^7.2.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "eslint-plugin-react": "^7.20.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airbnb-clone-128/photo-gallery-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/airbnb-clone-128/photo-gallery-service/issues"
+  },
+  "homepage": "https://github.com/airbnb-clone-128/photo-gallery-service#readme"
 }
