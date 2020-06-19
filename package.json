@@ -2,8 +2,9 @@
   "name": "airbnb-clone-128-photo-gallery",
   "version": "1.0.0",
   "description": "FEC airbnb clone 128",
+
   "author": "",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
