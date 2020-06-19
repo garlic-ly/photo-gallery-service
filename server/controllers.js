@@ -2,10 +2,10 @@ const models = require('./models.js')
 
 module.exports = {
   get: (req, res) => {
-    let id = req.body.id;
+    let { id } = req.body;
 
-    models.get ( id, () => {
+    models.get(id, (err, result) => {
 
-    })
-  }
-}
+    });
+  },
+};
