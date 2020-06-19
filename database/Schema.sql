@@ -20,5 +20,6 @@ CREATE TABLE images (
   id INT NOT NULL auto_increment,
   image_url varchar(250) NOT NULL,
   room_id INT,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (room_id) REFERENCES rooms(id)
 );
