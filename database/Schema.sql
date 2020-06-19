@@ -9,7 +9,8 @@ CREATE TABLE rooms (
   room_name varchar(100) NOT NULL,
   location_city varchar(255) NOT NULL,
   location_country varchar(100) NOT NULL,
-  review_id INT,
+  average_review_point int,
+  number_of_reviews int,
   images_id INT,
   PRIMARY KEY (id)
   -- FOREIGN KEY (review_id) REFERENCES reviews(id),
@@ -26,20 +27,7 @@ CREATE TABLE images (
   -- FOREIGN KEY (room_id) REFERENCES rooms(id)
 );
 
-DROP TABLE IF EXISTS reviews;
-
-CREATE TABLE reviews (
-  id INT NOT NULL auto_increment,
-  average_review_point int,
-  number_of_reviews int,
-  room_id INT,
-  PRIMARY KEY (id)
-  -- FOREIGN KEY (room_id) REFERENCES rooms(id)
-);
-
-ALTER TABLE rooms ADD FOREIGN KEY (review_id) REFERENCES reviews(id);
 ALTER TABLE rooms ADD FOREIGN KEY (images_id) REFERENCES images(id);
 ALTER TABLE images ADD FOREIGN KEY (room_id) REFERENCES rooms(id);
-ALTER TABLE reviews ADD FOREIGN KEY (room_id) REFERENCES rooms(id);
 
 
