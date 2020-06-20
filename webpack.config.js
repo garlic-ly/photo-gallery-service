@@ -14,6 +14,7 @@ module.exports = {
         test : /\.jsx?/,
         include : SRC_DIR,
         loaders : 'babel-loader',
+        // In webpack 4.x.x. presets needs to be defined in babelrc
         // options: {
         //   presets: ['react', 'env']
         // }
