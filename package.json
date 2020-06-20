@@ -8,7 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "server-dev": "node server/index.js",
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js",
     "seed": "node database/seed.js"
   },
   "dependencies": {
@@ -16,6 +17,8 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mysql": "2.18.1",
+    "nodemon": "^2.0.4",
+    "path": "^0.12.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
