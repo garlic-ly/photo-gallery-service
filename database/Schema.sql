@@ -11,6 +11,7 @@ CREATE TABLE rooms (
   location_country varchar(100) NOT NULL,
   average_review_point varchar(10),
   number_of_reviews int(5),
+  is_superhost boolean,
   PRIMARY KEY (id)
 );
 
