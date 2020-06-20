@@ -5,8 +5,8 @@ const ITEM_NUMBER = 100;
 
 const roomsData = [];
 const imagesData = [];
-// TODO: This url needs to be sourced from S3. For now, it is LoremFlicker
-const randomImageUrl = 'https://loremflickr.com/1440/960/room';
+// URL for images in S3 bucket
+const exampleImage = 'https://rooms-images-128.s3-us-west-1.amazonaws.com/imageXXX.jpg';
 
 const generateRoomsData = () => {
   for (let i = 0; i < ITEM_NUMBER; i += 1) {
@@ -41,10 +41,11 @@ const generateImagesData = () => {
     // One room has 5-15 images. Number of image is randomly generated
     const randomNumberOfImage = Math.floor(Math.random() * (15 - 5) + 5);
 
-    // randomImageUrl will generate different image everytime
+    // there are 70 photos in S3 Bucket and will be chosen randomly
     for (let j = 0; j < randomNumberOfImage; j += 1) {
+      const imageId = Math.floor(Math.random() * (70 - 1) + 1);
       const oneImage = {
-        image_url: randomImageUrl,
+        image_url: `https://rooms-images-128.s3-us-west-1.amazonaws.com/image${imageId}.jpg`,
         room_id: i,
       };
       imagesData.push(oneImage);
