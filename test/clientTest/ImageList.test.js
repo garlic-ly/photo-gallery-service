@@ -14,5 +14,21 @@ describe('A suite for ImagesList', () => {
     expect(wrapper.find(ImagesList).exists()).toEqual(true);
   });
 
-  
+  // grid from styled-css-grid renders with class Grid__Grid
+  it('should contain Grid', () => {
+    const wrapper = mount(<App/>);
+    expect(wrapper.find('Grid__Grid').exists()).toEqual(true);
+  });
+
+  // cell from styled-css-grid renders with class Cell__Cell
+  it('should contain 5 Cells', () => {
+    const wrapper = mount(<App/>);
+    expect(wrapper.find('Cell__Cell')).toHaveLength(5);
+  });
+
+  it('should render 5 images as default', () => {
+    const wrapper = mount(<App/>);
+    expect(wrapper.find('img')).toHaveLength(5);
+  });
+
 })

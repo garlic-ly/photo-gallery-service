@@ -14,4 +14,3 @@ return (
 }
 
 export default ImagesList;
-
