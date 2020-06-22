@@ -1,14 +1,15 @@
 import React from 'react';
+import Button from './Button.jsx';
 
 const App = () => {
   return (
     <div>
       <h1> Modern Lounge Ultra clean </h1>
-      <button>4.92 (843) </button>
-      <button>Superhost </button>
+      <Button>4.92 (843) </Button>
+      <Button>Superhost </Button>
       <a>San Barbara, California, Unites States</a>
-      <button> Share</button>
-      <button> Save</button>
+      <Button> Share</Button>
+      <Button> Save</Button>
 
     </div>
   )
