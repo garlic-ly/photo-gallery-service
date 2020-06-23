@@ -26,6 +26,38 @@ class App extends React.Component {
     }
   }
 
+  getRoomData (id) {
+    fetch(`/api/rooms/${id}`)
+      .then(response => response.json())
+      .then(result => {
+        const imagesArr = []
+        result.forEach(ele => {
+          imagesArr.push(ele.image_url);
+        });
+        const data = {
+          room_name: result[0].room_name,
+          location_city: result[0].location_city,
+          location_country: result[0].location_country,
+          average_review_point: result[0].average_review_point,
+          number_of_reviews: result[0].number_of_reviews,
+          is_superhost: result[0].is_superhost,
+          images: imagesArr
+        };
+
+        this.setState({
+          data: data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        throw err;
+      });
+  }
+
+  componentDidMount() {
+    this.getRoomData(this.props.selectedRoom);
+  }
+
   render () {
     return (
       <div className='container'>
