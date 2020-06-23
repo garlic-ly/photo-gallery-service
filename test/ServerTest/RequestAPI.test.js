@@ -1,6 +1,6 @@
 const request = require('supertest')('http://localhost:3002');
 
-xdescribe ('A suite for server request', () => {
+describe ('A suite for server request', () => {
   it('should fetch a existing room data and respond with 200 with a given "id"', () => {
     const targetId = 10;
     request.get(`api/rooms/${targetId}`)

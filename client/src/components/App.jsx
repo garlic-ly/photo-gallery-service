@@ -28,7 +28,6 @@ class App extends React.Component {
 
   getRoomData (id) {
     axios.get(`/api/rooms/${id}`)
-      // .then(response => response.json())
       .then(result => {
         const data = result.data;
         const imagesArr = [];
