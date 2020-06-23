@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TitleBar from './TitleBar.jsx';
 import ImagesList from './ImagesList.jsx';
+import axios from 'axios';
 
 var initialState = {
   room_name: '',
@@ -26,27 +27,27 @@ class App extends React.Component {
   }
 
   getRoomData (id) {
-    fetch(`/api/rooms/${id}`)
-      .then(response => response.json())
+    axios.get(`/api/rooms/${id}`)
+      // .then(response => response.json())
       .then(result => {
-        console.log(result);
-        const imagesArr = []
-        result.forEach(ele => {
+        const data = result.data;
+        const imagesArr = [];
+        data.forEach(ele => {
           imagesArr.push(ele.image_url);
         });
-        const data = {
-          room_name: result[0].room_name,
-          location_city: result[0].location_city,
-          location_country: result[0].location_country,
-          average_review_point: result[0].average_review_point,
-          number_of_reviews: result[0].number_of_reviews,
-          is_superhost: result[0].is_superhost,
+        const oneRoom = {
+          room_name: data[0].room_name,
+          location_city: data[0].location_city,
+          location_country: data[0].location_country,
+          average_review_point: data[0].average_review_point,
+          number_of_reviews: data[0].number_of_reviews,
+          is_superhost: data[0].is_superhost,
           images: imagesArr
         };
 
         this.setState({
           isLoaded: true,
-          data
+          data: oneRoom,
         });
       })
       .catch(error => {
