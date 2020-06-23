@@ -8,7 +8,7 @@ import TitleBar from '../../client/src/components/TitleBar.jsx';
 
 Enzyme.configure({ adapter: new Adapter()});
 
-describe('A suite for TitleBar component', () => {
+xdescribe('A suite for TitleBar component', () => {
   it('should render TitleBar component without throwing an error', () => {
     const wrapper = mount(<App/>);
     expect(wrapper.find(TitleBar).exists()).toEqual(true);
