@@ -5,9 +5,9 @@ module.exports = {
     const q = 'SELECT * FROM rooms INNER JOIN images ON rooms.id = ? AND rooms.id = images.room_id';
     db.query(q, [id], (err, result) => {
       if (err) {
-        callback(err);
+        callback(err, null);
       } else {
-        callback(result);
+        callback(null, result);
       }
     });
   },
