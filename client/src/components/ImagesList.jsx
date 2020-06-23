@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Cell } from "styled-css-grid";
 
 const ImagesList = ({data}) => {
@@ -12,5 +13,9 @@ return (
   </Grid>
   )
 }
+
+ImagesList.propTypes= {
+  data: PropTypes.object,
+};
 
 export default ImagesList;

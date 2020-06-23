@@ -1,6 +1,6 @@
 const request = require('supertest')('http://localhost:3002');
 
-describe ('A suite for server request', () => {
+xdescribe ('A suite for server request', () => {
   it('should fetch a existing room data and respond with 200 with a given "id"', () => {
     const targetId = 10;
     request.get(`api/rooms/${targetId}`)
@@ -8,7 +8,7 @@ describe ('A suite for server request', () => {
         expect(response.statusCode).toBe(200);
         expect(response.body[i].room_id).toBe(targetId);
         done();
-      })
+      });
   });
 
 
@@ -18,6 +18,6 @@ describe ('A suite for server request', () => {
       .then( response => {
         expect(response.statusCode).toBe(400);
         done();
-    })
+    });
   });
 })

@@ -1,5 +1,5 @@
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button.jsx';
 
 const TitleBar = ({data}) => {
@@ -14,6 +14,10 @@ const TitleBar = ({data}) => {
       <Button> Save </Button>
     </div>
   )
+};
+
+TitleBar.propTypes= {
+  data: PropTypes.object,
 };
 
 export default TitleBar;

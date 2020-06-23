@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TitleBar from './TitleBar.jsx';
 import ImagesList from './ImagesList.jsx';
 
@@ -21,12 +22,14 @@ class App extends React.Component {
       isLoaded: true,
       data: initialState,
     }
+    this.getRoomData = this.getRoomData.bind(this);
   }
 
   getRoomData (id) {
     fetch(`/api/rooms/${id}`)
       .then(response => response.json())
       .then(result => {
+        console.log(result);
         const imagesArr = []
         result.forEach(ele => {
           imagesArr.push(ele.image_url);
@@ -74,6 +77,10 @@ class App extends React.Component {
       )
     }
   }
+}
+
+App.propTypes= {
+  id: PropTypes.number,
 };
 
 export default App;
