@@ -9,27 +9,33 @@ import TitleBar from '../../client/src/components/TitleBar.jsx';
 
 Enzyme.configure({ adapter: new Adapter()});
 
-xdescribe('A suite for App component', () => {
-  it('should render without throwing an error', () => {
+describe('A suite for App component', () => {
+  xit('should render without throwing an error', () => {
     expect(shallow(<App />).exists()).toBe(true);
   });
 
-  it('should render div with className "container"', () => {
+  xit('should render div with className "container"', () => {
     const wrapper = mount(<App/>);
     expect(wrapper.exists('.container')).toEqual(true);
     expect(wrapper.find('.not-a-container').exists()).toEqual(false);
   });
 
-  it('should render <TitleBar/> component', () => {
+  xit('should render <TitleBar/> component', () => {
     const wrapper = mount(<App/>);
     expect(wrapper.find(TitleBar).exists()).toEqual(true);
   });
 
-  it('should render <ImagesList/> component', () => {
+  xit('should render <ImagesList/> component', () => {
     const wrapper = mount(<App/>);
     expect(wrapper.find(ImagesList).exists()).toEqual(true);
 
   });
+
+  test('should call getRoomData during componentDidMount', () => {
+    const methodNameFake = jest.spyOn(App.prototype, 'getRoomData');
+    const wrapper = mount(<App {...props} />);
+    expect(methodNameFake).toHaveBeenCalledTimes(1);
+});
 
 })
 
