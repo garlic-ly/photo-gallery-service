@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TitleBar from './TitleBar.jsx';
-import ImagesList from './ImagesList.jsx';
+import ImageGallery from './ImageGallery.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -18,6 +18,7 @@ var initialState = {
 
 const Body = styled.div `
   font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fff;
 `
 
 class App extends React.Component {
@@ -78,7 +79,7 @@ class App extends React.Component {
       return (
         <Body className='container'>
           <TitleBar data={this.state.data}/>
-          <ImagesList data={this.state.data}/>
+          <ImageGallery data={this.state.data}/>
         </Body>
       )
     }

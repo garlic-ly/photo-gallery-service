@@ -10,20 +10,38 @@ import SuperhostSVG from '../icons/superhost.svg';
 const Wrapper= styled.div`
   display: block;
   box-sizing: border-box;
-  max-width: 1140px;
+`;
+
+const Section = styled.section`
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+  display: block;
+  box-sizing: border-box;
+  max-width: 1120px;
   margin: auto;
+  height: 88px;
+`;
+
+const WrapperInner = styled.div`
+  display:block;
+  box-sizing: border-box;
+  padding-top: 24px;
+  margin-bottom:24px;
+  position: relative
 `;
 
 const Title = styled.div `
-  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  box-sizing: border-box;
+  margin-bottom: 4px;
   color: #222222;
   font-size: 26px;
+  font-weight: 600;
   line-height: 30px;
+  height: 30px;
 `;
 const ButtonReview = styled.button`
   border: none;
   background: transparent;
-  font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
   font-size: 14px;
   line-height: 20px;
@@ -32,7 +50,6 @@ const ButtonReview = styled.button`
 const ButtonSuperhost = styled.button`
   border: none;
   background: transparent;
-  font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
   font-size: 14px;
   line-height: 20px;
@@ -41,7 +58,6 @@ const ButtonSuperhost = styled.button`
 const ButtonLocation = styled.button`
   border: none;
   background: transparent;
-  font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
   font-size: 14px;
   line-height: 20px;
@@ -52,7 +68,6 @@ const ButtonLocation = styled.button`
 const ButtonShareSave = styled.button`
   border: none;
   background: transparent;
-  font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
   font-size: 14px;
   line-height: 20px;
@@ -61,22 +76,14 @@ const ButtonShareSave = styled.button`
 `;
 
 const TitleBar = ({data}) => {
-
   return (
     <Wrapper>
-      <Title> {data.room_name}</Title>
-      <Row justifyContent={{ sm: "center", md: "flex-end" }} alignContent={{md:"flex-end" }} gutter="16px">
-        <Col xs={3} md={6}>
-        <ButtonReview>{data.average_review_point} ({data.number_of_reviews})</ButtonReview>
-        <ButtonSuperhost> <img src={SuperhostSVG}/> {data.average_review_point === 1 ? 'Superhost': 'NotASuperhost'} </ButtonSuperhost>
-        <ButtonLocation> {data.location_city}, {data.location_country} </ButtonLocation>
+      <Section>
+        <WrapperInner>
+          <Title> {data.room_name.slice(0,1).toUpperCase() + data.room_name.slice(1)} </Title>
 
-        </Col>
-        <Col xs={3} md={6}>
-          <ButtonShareSave> <img src={ShareSVG}/>  Share </ButtonShareSave>
-          <ButtonShareSave> <img src={SaveSVG}/> Save </ButtonShareSave>
-        </Col>
-      </Row>
+        </WrapperInner>
+      </Section>
     </Wrapper>
   )
 };
@@ -87,3 +94,4 @@ TitleBar.propTypes= {
 
 export default TitleBar;
 
+{/* <img src={SaveSVG}/> */}
