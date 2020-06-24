@@ -17,10 +17,7 @@ var initialState = {
 };
 
 const Body = styled.div `
-  font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
-  font-size: 26px;
-  max-width: 1140px;
-  margin: auto;
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
 `
 
 class App extends React.Component {

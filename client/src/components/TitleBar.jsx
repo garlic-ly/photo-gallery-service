@@ -6,8 +6,16 @@ import SaveSVG from '../icons/save.svg';
 import ShareSVG from '../icons/share.svg';
 import SuperhostSVG from '../icons/superhost.svg';
 
+
+const Wrapper= styled.div`
+  display: block;
+  box-sizing: border-box;
+  max-width: 1140px;
+  margin: auto;
+`;
+
 const Title = styled.div `
-  font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
   color: #222222;
   font-size: 26px;
   line-height: 30px;
@@ -39,7 +47,6 @@ const ButtonLocation = styled.button`
   line-height: 20px;
   font-weight: bold;
   text-decoration: underline;
-
 `;
 
 const ButtonShareSave = styled.button`
@@ -56,7 +63,7 @@ const ButtonShareSave = styled.button`
 const TitleBar = ({data}) => {
 
   return (
-    <div>
+    <Wrapper>
       <Title> {data.room_name}</Title>
       <Row justifyContent={{ sm: "center", md: "flex-end" }} alignContent={{md:"flex-end" }} gutter="16px">
         <Col xs={3} md={6}>
@@ -70,7 +77,7 @@ const TitleBar = ({data}) => {
           <ButtonShareSave> <img src={SaveSVG}/> Save </ButtonShareSave>
         </Col>
       </Row>
-    </div>
+    </Wrapper>
   )
 };
 
