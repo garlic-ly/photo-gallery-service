@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TitleBar from './TitleBar.jsx';
 import ImagesList from './ImagesList.jsx';
 import axios from 'axios';
+import styled from 'styled-components';
 
 var initialState = {
   room_name: '',
@@ -14,6 +15,12 @@ var initialState = {
   images: [
     '','', '', '', '']
 };
+
+const Text = styled.div `
+  font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
+  color: #222222;
+  font-size: 26px;
+`
 
 class App extends React.Component {
   constructor (props) {
@@ -66,9 +73,9 @@ class App extends React.Component {
     const { error, isLoaded, items } = this.state;
 
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <Text>Error: {error.message}</Text>;
     } else if (!isLoaded) {
-      return <div> Loading... </div>
+      return <Text> Loading... </Text>
     } else {
       return (
         <div className='container'>
@@ -79,9 +86,5 @@ class App extends React.Component {
     }
   }
 }
-
-App.propTypes= {
-  id: PropTypes.number,
-};
 
 export default App;
