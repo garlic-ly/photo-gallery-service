@@ -58,7 +58,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getRoomData(this.props.selectedRoom);
+    const id = window.location.pathname.split('/')[2];
+    this.getRoomData(id);
   }
 
   render () {
