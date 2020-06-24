@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import {Grid, Col, Row} from 'react-styled-flexboxgrid';
+import SaveSVG from '../icons/save.svg';
+import ShareSVG from '../icons/share.svg';
+import SuperhostSVG from '../icons/superhost.svg';
 
 const Title = styled.div `
   font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
@@ -9,6 +13,7 @@ const Title = styled.div `
   line-height: 30px;
 `;
 const ButtonReview = styled.button`
+  border: none;
   background: transparent;
   font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
@@ -17,6 +22,7 @@ const ButtonReview = styled.button`
 `;
 
 const ButtonSuperhost = styled.button`
+  border: none;
   background: transparent;
   font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
@@ -25,6 +31,7 @@ const ButtonSuperhost = styled.button`
 `;
 
 const ButtonLocation = styled.button`
+  border: none;
   background: transparent;
   font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
@@ -36,6 +43,7 @@ const ButtonLocation = styled.button`
 `;
 
 const ButtonShareSave = styled.button`
+  border: none;
   background: transparent;
   font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
   color: #717171;
@@ -50,11 +58,18 @@ const TitleBar = ({data}) => {
   return (
     <div>
       <Title> {data.room_name}</Title>
-      <ButtonReview>{data.average_review_point} ({data.number_of_reviews})</ButtonReview>
-      <ButtonSuperhost> {data.average_review_point === 1 ? 'Superhost': 'NotASuperhost'} </ButtonSuperhost>
-      <ButtonLocation> {data.location_city}, {data.location_country} </ButtonLocation>
-      <ButtonShareSave> Share </ButtonShareSave>
-      <ButtonShareSave> Save </ButtonShareSave>
+      <Row justifyContent={{ sm: "center", md: "flex-end" }} alignContent={{md:"flex-end" }} gutter="16px">
+        <Col xs={3} md={6}>
+        <ButtonReview>{data.average_review_point} ({data.number_of_reviews})</ButtonReview>
+        <ButtonSuperhost> <img src={SuperhostSVG}/> {data.average_review_point === 1 ? 'Superhost': 'NotASuperhost'} </ButtonSuperhost>
+        <ButtonLocation> {data.location_city}, {data.location_country} </ButtonLocation>
+
+        </Col>
+        <Col xs={3} md={6}>
+          <ButtonShareSave> <img src={ShareSVG}/>  Share </ButtonShareSave>
+          <ButtonShareSave> <img src={SaveSVG}/> Save </ButtonShareSave>
+        </Col>
+      </Row>
     </div>
   )
 };

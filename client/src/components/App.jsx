@@ -16,10 +16,11 @@ var initialState = {
     '','', '', '', '']
 };
 
-const Text = styled.div `
+const Body = styled.div `
   font-family: Circular, Roboto, "Helvetica Neue", sans-serif;
-  color: #222222;
   font-size: 26px;
+  max-width: 1140px;
+  margin: auto;
 `
 
 class App extends React.Component {
@@ -78,10 +79,10 @@ class App extends React.Component {
       return <Text> Loading... </Text>
     } else {
       return (
-        <div className='container'>
+        <Body className='container'>
           <TitleBar data={this.state.data}/>
           <ImagesList data={this.state.data}/>
-        </div>
+        </Body>
       )
     }
   }
