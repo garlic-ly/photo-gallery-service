@@ -1,8 +1,10 @@
 import React from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TitleBar from './TitleBar.jsx';
-import ImagesList from './ImagesList.jsx';
-import axios from 'axios';
+import ImageGallery from './ImageGallery.jsx';
+import ImageList from './ImageList.jsx';
 
 var initialState = {
   room_name: '',
@@ -15,6 +17,11 @@ var initialState = {
     '','', '', '', '']
 };
 
+const Body = styled.div `
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fff;
+`
+
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -22,8 +29,16 @@ class App extends React.Component {
       error: null,
       isLoaded: true,
       data: initialState,
+      imageList: false,
     }
     this.getRoomData = this.getRoomData.bind(this);
+    this.toggleMainAndPhotoList = this.toggleMainAndPhotoList.bind(this);
+  }
+
+  toggleMainAndPhotoList() {
+    this.setState({
+      imageList: !this.state.imageList,
+    })
   }
 
   getRoomData (id) {
@@ -58,29 +73,31 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getRoomData(this.props.selectedRoom);
+    const id = window.location.pathname.split('/')[2];
+    this.getRoomData(id);
   }
 
-  render () {
+  renderView() {
     const { error, isLoaded, items } = this.state;
-
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <Body>Error: {error.message}</Body>;
     } else if (!isLoaded) {
-      return <div> Loading... </div>
+      return <Body> Loading... </Body>
+    } else if (this.state.imageList){
+      return <ImageList images={this.state.data.images} toggle={this.toggleMainAndPhotoList}/>
     } else {
       return (
-        <div className='container'>
+        <Body className='container'>
           <TitleBar data={this.state.data}/>
-          <ImagesList data={this.state.data}/>
-        </div>
+          <ImageGallery data={this.state.data} toggle={this.toggleMainAndPhotoList}/>
+        </Body>
       )
     }
   }
-}
 
-App.propTypes= {
-  id: PropTypes.number,
-};
+  render () {
+    return this.renderView();
+  }
+}
 
 export default App;

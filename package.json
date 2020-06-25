@@ -14,7 +14,6 @@
     "test": "jest --config ./jest.config.json",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage"
-
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -26,6 +25,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-styled-flexboxgrid": "^3.2.1",
     "styled-components": "^5.1.1",
     "styled-css-grid": "^1.2.1"
   },
@@ -46,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
+    "file-loader": "^6.0.0",
     "jest": "^25.5.4",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",

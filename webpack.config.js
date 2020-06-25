@@ -14,7 +14,15 @@ module.exports = {
         test : /\.jsx?/,
         include : SRC_DIR,
         loaders : 'babel-loader',
-      }
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ]
   }
 };
