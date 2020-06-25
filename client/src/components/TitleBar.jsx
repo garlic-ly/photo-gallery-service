@@ -64,6 +64,12 @@ const DetailContainer = styled.div`
 
 `;
 
+const ShareSaveContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+`
+
 const SpanReview = styled.span`
   display: inline-flex;
   align-items: baseline;
@@ -108,6 +114,10 @@ const ButtonLocation = styled.span`
 `;
 
 const ButtonShareSave = styled.button`
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
   border: none;
   background: transparent;
   color: #717171;
@@ -118,6 +128,16 @@ const ButtonShareSave = styled.button`
 `;
 
 const SvgIcon = styled.img`
+  display: inline-flex;
+  viewBox: 0 0 32 32;
+  heigth: 16px;
+  width: 16px;
+  fill: currentcolor;
+  overflow: hidden;
+  cursor: pointer;
+`;
+
+const SvgIconSuperhost = styled.img`
   display: inline-flex;
   viewBox: 0 0 32 32;
   heigth: 10px;
@@ -144,10 +164,14 @@ const TitleBar = ({data}) => {
         <Title> {data.room_name.slice(0,1).toUpperCase() + data.room_name.slice(1)} </Title>
           <FlexContainer>
               <DetailContainer>
-                <SpanReview> <span> <PngIcon src={StarPNG}/> </span> {data.average_review_point} ({data.number_of_reviews})  </SpanReview>
-                <span> · <SvgIcon src={SuperhostSVG}/> Superhost · </span>
+                <SpanReview><span> <PngIcon src={StarPNG}/> </span>{data.average_review_point} ({data.number_of_reviews})  </SpanReview>
+                <span> · <SvgIconSuperhost src={SuperhostSVG}/> Superhost · </span>
                 <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
               </DetailContainer>
+              <ShareSaveContainer>
+                <ButtonShareSave> <SvgIcon src={ShareSVG}/> Share </ButtonShareSave>
+                <ButtonShareSave> <SvgIcon src={SaveSVG}/> Save </ButtonShareSave>
+              </ShareSaveContainer>
           </FlexContainer>
       </Section>
     </WrapperTitleBar>
