@@ -147,9 +147,13 @@ const CurrentImage = styled.img`
   position: static;
 `;
 
+const NextPrevious = styled.div`
+  display: flex;
+`;
+
 const Previous = styled.div`
   flex: 1;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -158,7 +162,6 @@ const Next = styled.div`
   justify-content: flex-end;
   align-items: center;
 `
-
 
 const BottomWrapper = styled.div`
   display: block;
@@ -222,21 +225,14 @@ class ImageList extends React.Component{
         </Header>
       </HeaderWrapper>
 
-      <ImageWrapper>
-        <ImageFlexCon>
-
-        <Previous>
+      <NextPrevious>
+      <Previous>
           <CloseButton>
             <InsideCloseButton onClick={this.previousImage}>
               <span> Previous </span>
             </InsideCloseButton>
           </CloseButton>
         </Previous>
-
-        <ImageContainer>
-          <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
-        </ImageContainer>
-
         <Next>
           <CloseButton>
             <InsideCloseButton onClick={this.nextImage}>
@@ -244,7 +240,13 @@ class ImageList extends React.Component{
             </InsideCloseButton>
           </CloseButton>
         </Next>
+      </NextPrevious>
 
+      <ImageWrapper>
+        <ImageFlexCon>
+        <ImageContainer>
+          <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
+        </ImageContainer>
         </ImageFlexCon>
     </ImageWrapper>
 
