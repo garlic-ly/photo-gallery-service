@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Next from '../icons/next.svg';
-import Previous from '../icons/previous.svg';
+import NextSVG from '../icons/next.svg';
+import PreviousSVG from '../icons/previous.svg';
 import Xmark from '../icons/xmark.svg';
+import SaveSVG from '../icons/save.svg';
+import ShareSVG from '../icons/share.svg';
 
 const Wrapper = styled.div`
   position: relative;
@@ -31,6 +33,8 @@ const Header = styled.div`
 `;
 
 const CloseButtonContainer = styled.div`
+  flex: 1;
+  justify-content: space-between;
   min-width: 50px;
   flex-grow: 0;
   flex-shrink: 0;
@@ -68,17 +72,62 @@ const CrossSvg = styled.img`
   cursor: pointer;
 `;
 
+const Counter = styled.div`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+`;
+
+const ShareSave = styled.div`
+  flex: 1;
+  justify-content: space-between;
+`;
+
+const ShareSaveContainer = styled.div`
+  align-items: baseline;
+  position: absolute;
+  right: 50px;
+  box-sizing: border-box;
+`
+const ButtonShareSave = styled.button`
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: #717171;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+`;
+
+const SvgIcon = styled.img`
+  display: inline-flex;
+  viewBox: 0 0 32 32;
+  heigth: 16px;
+  width: 16px;
+  fill: currentcolor;
+  overflow: hidden;
+  cursor: pointer;
+`;
+
 const ImageWrapper = styled.div`
   display: block;
-  mid-width: 774px;
-  max-height: 785px;
-  height: calc(100%-224px);
-  top: 112px;
+  height: calc(100% - 112px);
   width: calc(100% - 192px);
   margin: auto;
   position relative;
   box-sizing: border-box;
 `;
+
+const ImageFlexCon = styled.div`
+  height: 100%;
+  display: block;
+`
 
 const ImageContainer = styled.div`
   display: inline-block;
@@ -93,15 +142,28 @@ const ImageContainer = styled.div`
 const CurrentImage = styled.img`
   object-fit: scale-down;
   vertical-align: bottom;
-  height: 100%;
+  height: 750px;
   width: 100%;
   position: static;
 `;
 
+const Previous = styled.div`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Next = styled.div`
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+`
+
+
 const BottomWrapper = styled.div`
   display: block;
   height: 80px;
-`
+`;
 
 class ImageList extends React.Component{
   constructor(props) {
@@ -145,28 +207,48 @@ class ImageList extends React.Component{
               </InsideCloseButton>
             </CloseButton>
 
-            <CloseButton>
-              <InsideCloseButton onClick={this.previousImage}>
-                <span> Previous </span>
-              </InsideCloseButton>
-            </CloseButton>
-
-
-            <CloseButton>
-              <InsideCloseButton onClick={this.nextImage}>
-                <span> Next </span>
-              </InsideCloseButton>
-            </CloseButton>
-
 
           </CloseButtonContainer>
+
+        <Counter> {this.state.currentImageIndex + 1}/{this.props.images.length} </Counter>
+
+        <ShareSave>
+          <ShareSaveContainer>
+            <ButtonShareSave> <SvgIcon src={ShareSVG}/> Share </ButtonShareSave>
+            <ButtonShareSave> <SvgIcon src={SaveSVG}/> Save </ButtonShareSave>
+          </ShareSaveContainer>
+        </ShareSave>
+
         </Header>
       </HeaderWrapper>
+
       <ImageWrapper>
+        <ImageFlexCon>
+
+        <Previous>
+          <CloseButton>
+            <InsideCloseButton onClick={this.previousImage}>
+              <span> Previous </span>
+            </InsideCloseButton>
+          </CloseButton>
+        </Previous>
+
         <ImageContainer>
           <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
         </ImageContainer>
-      </ImageWrapper>
+
+        <Next>
+          <CloseButton>
+            <InsideCloseButton onClick={this.nextImage}>
+              <span> Next </span>
+            </InsideCloseButton>
+          </CloseButton>
+        </Next>
+
+        </ImageFlexCon>
+    </ImageWrapper>
+
+
     </Wrapper>
     )
   }
