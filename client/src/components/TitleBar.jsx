@@ -61,12 +61,12 @@ const DetailContainer = styled.div`
   flex-wrap: wrap;
   margin-top: 0px;
   box-sizing: border-box;
-
 `;
 
 const ShareSaveContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  align-items: baseline;
+  position: absolute;
+  right: 0px;
   box-sizing: border-box;
 `
 
@@ -84,6 +84,7 @@ const SpanLocation = styled.span`
   min-width: 0px;
   margin-top: 8px;
   box-sizing: border-box;
+  text-decoration: underline;
 `;
 
 const ButtonReview = styled.span`
@@ -167,11 +168,11 @@ const TitleBar = ({data}) => {
                 <SpanReview><span> <PngIcon src={StarPNG}/> </span>{data.average_review_point} ({data.number_of_reviews})  </SpanReview>
                 <span> · <SvgIconSuperhost src={SuperhostSVG}/> Superhost · </span>
                 <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
-              </DetailContainer>
               <ShareSaveContainer>
                 <ButtonShareSave> <SvgIcon src={ShareSVG}/> Share </ButtonShareSave>
                 <ButtonShareSave> <SvgIcon src={SaveSVG}/> Save </ButtonShareSave>
               </ShareSaveContainer>
+              </DetailContainer>
           </FlexContainer>
       </Section>
     </WrapperTitleBar>
