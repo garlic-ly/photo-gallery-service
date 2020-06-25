@@ -5,32 +5,34 @@ import {Grid, Col, Row} from 'react-styled-flexboxgrid';
 import SaveSVG from '../icons/save.svg';
 import ShareSVG from '../icons/share.svg';
 import SuperhostSVG from '../icons/superhost.svg';
+import StarPNG from '../icons/star.png';
 
 
-const Wrapper= styled.div`
+const WrapperTitleBar= styled.div`
   display: block;
   box-sizing: border-box;
+  max-width: 1120px;
+  height: 112px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
 `;
 
 const Section = styled.section`
   font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
   display: block;
   box-sizing: border-box;
-  max-width: 1120px;
   margin: auto;
-  height: 88px;
+  height: 100%;
+  width: 100%;
+  padding: 24px 0px 0px;
+  margin: 0px 0px 24px;
+  position: relative;
 `;
 
-const WrapperInner = styled.div`
-  display:block;
-  box-sizing: border-box;
-  padding-top: 24px;
-  margin-bottom:24px;
-  position: relative
-`;
-
-const Title = styled.div `
+const Title = styled.div`
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  display:block;
   box-sizing: border-box;
   margin-bottom: 4px;
   color: #222222;
@@ -39,7 +41,55 @@ const Title = styled.div `
   line-height: 30px;
   height: 30px;
 `;
-const ButtonReview = styled.button`
+
+const FlexContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  color: #222222;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  height: 30px;
+`;
+
+const DetailContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  box-sizing: border-box;
+
+`;
+
+const SpanReview = styled.span`
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 0px;
+  margin-top: 8px;
+  box-sizing: border-box;
+`;
+
+const SpanLocation = styled.span`
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 0px;
+  margin-top: 8px;
+  box-sizing: border-box;
+`;
+
+const ButtonReview = styled.span`
+  border: none;
+  background: transparent;
+  color: #717171;
+  font-size: 14px;
+  line-height: 20px;
+  color: #222222;
+`;
+
+const ButtonSuperhost = styled.span`
   border: none;
   background: transparent;
   color: #717171;
@@ -47,15 +97,7 @@ const ButtonReview = styled.button`
   line-height: 20px;
 `;
 
-const ButtonSuperhost = styled.button`
-  border: none;
-  background: transparent;
-  color: #717171;
-  font-size: 14px;
-  line-height: 20px;
-`;
-
-const ButtonLocation = styled.button`
+const ButtonLocation = styled.span`
   border: none;
   background: transparent;
   color: #717171;
@@ -75,16 +117,40 @@ const ButtonShareSave = styled.button`
   text-decoration: underline;
 `;
 
+const SvgIcon = styled.img`
+  display: inline-flex;
+  viewBox: 0 0 32 32;
+  heigth: 10px;
+  width: 10px;
+  fill: currentcolor;
+  overflow: hidden;
+  cursor: pointer;
+`;
+
+const PngIcon = styled.img`
+  display: inline-flex;
+  viewBox: 0 0 32 32;
+  heigth: 16px;
+  width: 16px;
+  fill: currentcolor;
+  overflow: hidden;
+  cursor: pointer;
+`;
+
 const TitleBar = ({data}) => {
   return (
-    <Wrapper>
+    <WrapperTitleBar>
       <Section>
-        <WrapperInner>
-          <Title> {data.room_name.slice(0,1).toUpperCase() + data.room_name.slice(1)} </Title>
-
-        </WrapperInner>
+        <Title> {data.room_name.slice(0,1).toUpperCase() + data.room_name.slice(1)} </Title>
+          <FlexContainer>
+              <DetailContainer>
+                <SpanReview> <span> <PngIcon src={StarPNG}/> </span> {data.average_review_point} ({data.number_of_reviews})  </SpanReview>
+                <span> · <SvgIcon src={SuperhostSVG}/> Superhost · </span>
+                <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
+              </DetailContainer>
+          </FlexContainer>
       </Section>
-    </Wrapper>
+    </WrapperTitleBar>
   )
 };
 
