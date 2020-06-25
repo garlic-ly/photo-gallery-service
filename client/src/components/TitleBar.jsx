@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {Grid, Col, Row} from 'react-styled-flexboxgrid';
+import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import SaveSVG from '../icons/save.svg';
 import ShareSVG from '../icons/share.svg';
 import SuperhostSVG from '../icons/superhost.svg';
 import StarPNG from '../icons/star.png';
 
 
-const WrapperTitleBar= styled.div`
+const WrapperTitleBar = styled.div`
   display: block;
   box-sizing: border-box;
   max-width: 1120px;
@@ -156,31 +156,31 @@ const PngIcon = styled.img`
   cursor: pointer;
 `;
 
-const TitleBar = ({data}) => {
+const TitleBar = ({ data }) => {
   return (
     <WrapperTitleBar>
       <Section>
-        <Title> {data.room_name.slice(0,1).toUpperCase() + data.room_name.slice(1)} </Title>
-          <FlexContainer>
-              <DetailContainer>
-                <SpanReview><span> <PngIcon src={StarPNG}/> </span>{data.average_review_point} ({data.number_of_reviews})  </SpanReview>
-                <span> · <SvgIconSuperhost src={SuperhostSVG}/> Superhost · </span>
-                <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
-              <ShareSaveContainer>
-                <ButtonShareSave> <SvgIcon src={ShareSVG}/> Share </ButtonShareSave>
-                <ButtonShareSave> <SvgIcon src={SaveSVG}/> Save </ButtonShareSave>
-              </ShareSaveContainer>
-              </DetailContainer>
-          </FlexContainer>
+        <Title> {data.room_name.slice(0, 1).toUpperCase() + data.room_name.slice(1)} </Title>
+        <FlexContainer>
+          <DetailContainer>
+            <SpanReview><span> <PngIcon src={StarPNG} /> </span>{data.average_review_point} ({data.number_of_reviews})  </SpanReview>
+            <span> · <SvgIconSuperhost src={SuperhostSVG} /> Superhost · </span>
+            <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
+            <ShareSaveContainer>
+              <ButtonShareSave> <SvgIcon src={ShareSVG} /> Share </ButtonShareSave>
+              <ButtonShareSave> <SvgIcon src={SaveSVG} /> Save </ButtonShareSave>
+            </ShareSaveContainer>
+          </DetailContainer>
+        </FlexContainer>
       </Section>
     </WrapperTitleBar>
   )
 };
 
-TitleBar.propTypes= {
+TitleBar.propTypes = {
   data: PropTypes.object,
 };
 
 export default TitleBar;
 
-{/* <img src={SaveSVG}/> */}
+{/* <img src={SaveSVG}/> */ }

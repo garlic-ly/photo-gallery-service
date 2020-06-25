@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {Grid, Col, Row} from 'react-styled-flexboxgrid';
+import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 
 const WrapperOuter = styled.div`
   display: block;
@@ -111,32 +111,32 @@ const TextShowAllPhotos = styled.div`
   box-sizing: border-box;
 `;
 
-const ImagesList = ({data, toggle}) => {
+const ImagesList = ({ data, toggle }) => {
   return (
     <WrapperOuter>
       <WrapperInner>
         <Box1>
-          <ImageContainer> <Image1 src={data.images[0]} onClick={() => {toggle()}}/> </ImageContainer>
+          <ImageContainer> <Image1 src={data.images[0]} onClick={() => { toggle() }} /> </ImageContainer>
         </Box1>
         <Box23>
-          <ImageContainer> <Image2 src={data.images[1]} onClick={() => {toggle()}}/> </ImageContainer>
-          <ImageContainer> <Image3 src={data.images[2]} onClick={() => {toggle()}}/> </ImageContainer>
+          <ImageContainer> <Image2 src={data.images[1]} onClick={() => { toggle() }} /> </ImageContainer>
+          <ImageContainer> <Image3 src={data.images[2]} onClick={() => { toggle() }} /> </ImageContainer>
         </Box23>
         <Box45>
-          <ImageContainer> <Image4 src={data.images[3]} onClick={() => {toggle()}}/> </ImageContainer>
-          <ImageContainer> <Image5 src={data.images[4]} onClick={() => {toggle()}}/> </ImageContainer>
-        <ShowAllPhotos>
-          <ButtonShowAllPhotos>
-            <TextShowAllPhotos onClick={() => {toggle()}} >Show all photos</TextShowAllPhotos>
-          </ButtonShowAllPhotos>
-        </ShowAllPhotos>
+          <ImageContainer> <Image4 src={data.images[3]} onClick={() => { toggle() }} /> </ImageContainer>
+          <ImageContainer> <Image5 src={data.images[4]} onClick={() => { toggle() }} /> </ImageContainer>
+          <ShowAllPhotos>
+            <ButtonShowAllPhotos>
+              <TextShowAllPhotos onClick={() => { toggle() }} >Show all photos</TextShowAllPhotos>
+            </ButtonShowAllPhotos>
+          </ShowAllPhotos>
         </Box45>
       </WrapperInner>
     </WrapperOuter>
   )
 }
 
-ImagesList.propTypes= {
+ImagesList.propTypes = {
   data: PropTypes.object,
   toggle: PropTypes.func,
 };

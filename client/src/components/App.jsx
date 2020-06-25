@@ -14,16 +14,16 @@ var initialState = {
   number_of_reviews: '',
   is_superhost: '',
   images: [
-    '','', '', '', '']
+    '', '', '', '', '']
 };
 
-const Body = styled.div `
+const Body = styled.div`
   font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
   background-color: #fff;
 `
 
 class App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       error: null,
@@ -41,7 +41,7 @@ class App extends React.Component {
     })
   }
 
-  getRoomData (id) {
+  getRoomData(id) {
     axios.get(`/api/rooms/${id}`)
       .then(result => {
         const data = result.data;
@@ -83,19 +83,19 @@ class App extends React.Component {
       return <Body>Error: {error.message}</Body>;
     } else if (!isLoaded) {
       return <Body> Loading... </Body>
-    } else if (this.state.imageList){
-      return <ImageList images={this.state.data.images} toggle={this.toggleMainAndPhotoList}/>
+    } else if (this.state.imageList) {
+      return <ImageList images={this.state.data.images} toggle={this.toggleMainAndPhotoList} />
     } else {
       return (
         <Body className='container'>
-          <TitleBar data={this.state.data}/>
-          <ImageGallery data={this.state.data} toggle={this.toggleMainAndPhotoList}/>
+          <TitleBar data={this.state.data} />
+          <ImageGallery data={this.state.data} toggle={this.toggleMainAndPhotoList} />
         </Body>
       )
     }
   }
 
-  render () {
+  render() {
     return this.renderView();
   }
 }
