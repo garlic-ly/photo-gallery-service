@@ -16,6 +16,7 @@ const WrapperInner = styled.div`
   box-sizing: border-box;
   width: 1140px;
   margin: auto;
+  position: relative;
 `;
 
 const Box1 = styled.div`
@@ -90,6 +91,38 @@ const Image5 = styled.img`
 
 `;
 
+const ShowAllPhotos = styled.div`
+  display:block;
+  position: absolute;
+  align-items: baseline;
+  bottom: 24px;
+  right: 24px;
+  z-index: 3;
+  box-sizing: border-box;
+
+`;
+
+const ButtonShowAllPhotos = styled.div`
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-weight: 18px;
+  font-weight: 600;
+  padding: 7px 15px 7px 15px;
+  border-radius: 8px;
+  border: 1px solid #222222;
+  background: #ffffff;
+`
+
+const TextShowAllPhotos = styled.div`
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+`;
+
 const ImagesList = ({data}) => {
   return (
     <WrapperOuter>
@@ -104,6 +137,11 @@ const ImagesList = ({data}) => {
         <Box45>
           <Image4Container> <Image4 src={data.images[3]}/> </Image4Container>
           <Image5Container> <Image5 src={data.images[4]}/> </Image5Container>
+        <ShowAllPhotos>
+          <ButtonShowAllPhotos>
+            <TextShowAllPhotos >Show all photos</TextShowAllPhotos>
+          </ButtonShowAllPhotos>
+        </ShowAllPhotos>
         </Box45>
       </WrapperInner>
     </WrapperOuter>
