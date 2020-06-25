@@ -46,7 +46,7 @@ const CloseButtonContainer = styled.div`
 const CloseButton = styled.button`
   cursor: pointer;
   display: incline-block
-  border-sizing: border-box;
+  box-sizing: border-box;
   position: relative;
   padding: 8px 16px 8px 16px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ const InsideCloseButton = styled.span`
   display: flex;
   flex-direction: row;
   align items: row;
-  justify-content: center
+  justify-content: center;
 `;
 
 const CrossSvg = styled.img`

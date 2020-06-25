@@ -31,23 +31,7 @@ const Box45 = styled.div`
   flex: 1;
 `;
 
-const Image1Container = styled.div`
-  flex: 1;
-`;
-
-const Image2Container = styled.div`
-  flex: 1;
-`;
-
-const Image3Container = styled.div`
-  flex: 1;
-`;
-
-const Image4Container = styled.div`
-  flex: 1;
-`;
-
-const Image5Container = styled.div`
+const ImageContainer = styled.div`
   flex: 1;
 `;
 
@@ -58,14 +42,14 @@ const Image1 = styled.img`
   width: 560px;
   object-fit: cover;
   border-radius: 12px 0px 0px 12px;
-`
+`;
 const Image2 = styled.img`
   cursor: pointer;
   display: block;
   height: 272px;
   width: 270px;
   object-fit: cover;
-  padding: 0px 5px 10px 5px
+  padding: 0px 5px 10px 5px;
 `;
 const Image3 = styled.img`
   cursor: pointer;
@@ -132,15 +116,15 @@ const ImagesList = ({data, toggle}) => {
     <WrapperOuter>
       <WrapperInner>
         <Box1>
-          <Image1Container> <Image1 src={data.images[0]} onClick={() => {toggle()}}/> </Image1Container>
+          <ImageContainer> <Image1 src={data.images[0]} onClick={() => {toggle()}}/> </ImageContainer>
         </Box1>
         <Box23>
-          <Image2Container> <Image2 src={data.images[1]} onClick={() => {toggle()}}/> </Image2Container>
-          <Image3Container> <Image3 src={data.images[2]} onClick={() => {toggle()}}/> </Image3Container>
+          <ImageContainer> <Image2 src={data.images[1]} onClick={() => {toggle()}}/> </ImageContainer>
+          <ImageContainer> <Image3 src={data.images[2]} onClick={() => {toggle()}}/> </ImageContainer>
         </Box23>
         <Box45>
-          <Image4Container> <Image4 src={data.images[3]} onClick={() => {toggle()}}/> </Image4Container>
-          <Image5Container> <Image5 src={data.images[4]} onClick={() => {toggle()}}/> </Image5Container>
+          <ImageContainer> <Image4 src={data.images[3]} onClick={() => {toggle()}}/> </ImageContainer>
+          <ImageContainer> <Image5 src={data.images[4]} onClick={() => {toggle()}}/> </ImageContainer>
         <ShowAllPhotos>
           <ButtonShowAllPhotos>
             <TextShowAllPhotos onClick={() => {toggle()}} >Show all photos</TextShowAllPhotos>
