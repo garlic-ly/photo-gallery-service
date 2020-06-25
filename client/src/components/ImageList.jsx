@@ -107,9 +107,30 @@ class ImageList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      currentImageIndex: 1,
+      currentImageIndex: 0,
     };
+    this.nextImage = this.nextImage.bind(this);
+    this.previousImage = this.previousImage.bind(this);
   }
+
+  nextImage () {
+    const next = this.state.currentImageIndex + 1;
+    if (next < this.props.images.length) {
+      this.setState({
+        currentImageIndex: next
+      })
+    }
+  }
+
+  previousImage () {
+    const previous = this.state.currentImageIndex - 1;
+    if (previous >= 0) {
+      this.setState({
+        currentImageIndex: previous
+      })
+    }
+  }
+
 
   render () {
     return (
@@ -123,6 +144,21 @@ class ImageList extends React.Component{
                 <span> Close </span>
               </InsideCloseButton>
             </CloseButton>
+
+            <CloseButton>
+              <InsideCloseButton onClick={this.previousImage}>
+                <span> Previous </span>
+              </InsideCloseButton>
+            </CloseButton>
+
+
+            <CloseButton>
+              <InsideCloseButton onClick={this.nextImage}>
+                <span> Next </span>
+              </InsideCloseButton>
+            </CloseButton>
+
+
           </CloseButtonContainer>
         </Header>
       </HeaderWrapper>
