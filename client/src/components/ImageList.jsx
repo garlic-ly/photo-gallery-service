@@ -5,6 +5,16 @@ import Next from '../icons/next.svg';
 import Previous from '../icons/previous.svg';
 import Xmark from '../icons/xmark.svg';
 
+const Wrapper = styled.div`
+  position: relative;
+  height: 100%;
+  max-height: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+`;
+
 const HeaderWrapper = styled.section`
   display:block;
  `;
@@ -58,33 +68,57 @@ const CrossSvg = styled.img`
   cursor: pointer;
 `;
 
-const wrapper = styled.div`
-
+const ImageWrapper = styled.div`
+  display: block;
+  mid-width: 774px;
+  max-height: 785px;
+  height: calc(100%-224px);
+  top: 112px;
+  width: calc(100% - 192px);
+  margin: auto;
+  position relative;
+  box-sizing: border-box;
 `;
 
-const CurrentImage = styled.img`
+const ImageContainer = styled.div`
   display: inline-block;
   vertical-align: bottom;
   height: 100%;
   width: 100%;
   min-height: 1px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 `;
+
+const CurrentImage = styled.img`
+  object-fit: scale-down;
+  vertical-align: bottom;
+  height: 100%;
+  width: 100%;
+  position: static;
+`;
+
+const BottomWrapper = styled.div`
+  display: block;
+  height: 80px;
+`
 
 class ImageList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      currentImageIndex: 0,
+      currentImageIndex: 1,
     };
   }
 
   render () {
     return (
+      <Wrapper>
       <HeaderWrapper>
         <Header>
           <CloseButtonContainer>
             <CloseButton>
-              <InsideCloseButton>
+              <InsideCloseButton onClick={() => {this.props.toggle()}}>
                 <CrossSvg src={Xmark}/>
                 <span> Close </span>
               </InsideCloseButton>
@@ -92,11 +126,14 @@ class ImageList extends React.Component{
           </CloseButtonContainer>
         </Header>
       </HeaderWrapper>
-      // <div> <CurrentImage src={this.props.images[0]}/> </div>
-
+      <ImageWrapper>
+        <ImageContainer>
+          <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
+        </ImageContainer>
+      </ImageWrapper>
+    </Wrapper>
     )
   }
-
 
 };
 
