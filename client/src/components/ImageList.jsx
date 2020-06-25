@@ -40,7 +40,6 @@ const CloseButtonContainer = styled.div`
   flex-shrink: 0;
   flex-basis: auto;
   display: block;
-
 `;
 
 const CloseButton = styled.button`
@@ -72,12 +71,12 @@ const CrossSvg = styled.img`
   cursor: pointer;
 `;
 
+
 const Counter = styled.div`
   flex: 1;
   justify-content: center;
   align-items: center;
   text-align: center;
-
 `;
 
 const ShareSave = styled.div`
@@ -91,6 +90,7 @@ const ShareSaveContainer = styled.div`
   right: 50px;
   box-sizing: border-box;
 `;
+
 const ButtonShareSave = styled.button`
   display: inline-block;
   cursor: pointer;
@@ -147,21 +147,43 @@ const CurrentImage = styled.img`
   position: static;
 `;
 
+const WrapperNextPrevious = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+`;
+
 const NextPrevious = styled.div`
   display: flex;
-`;
-
-const Previous = styled.div`
-  flex: 1;
   justify-content: space-between;
-  align-items: center;
+  margin-left: calc(2% + 19px);
+  margin-right: calc(2% + 19px);
+  box-sizing: border-box;
 `;
 
-const Next = styled.div`
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
+const NextPreviousContainer = styled.div`
+  display: block;
+  pointer-events: all;
 `;
+
+const NextPreviousButton = styled.button`
+  display:inline-block;
+  color: #222222;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  border-color: #484848;
+  border-width: 1px;
+  background: transparent;
+  font-zie: 100%;
+  width: 48px;
+  height: 48px;
+`;
+
 
 const BottomWrapper = styled.div`
   display: block;
@@ -213,29 +235,28 @@ class ImageList extends React.Component{
             <Counter> {this.state.currentImageIndex + 1}/{this.props.images.length} </Counter>
             <ShareSave>
               <ShareSaveContainer>
-                <ButtonShareSave> <SvgIcon src={ShareSVG} /> Share </ButtonShareSave>
-                <ButtonShareSave> <SvgIcon src={SaveSVG} /> Save </ButtonShareSave>
+                <ButtonShareSave> <SvgIcon src={ShareSVG} />  </ButtonShareSave>
+                <ButtonShareSave> <SvgIcon src={SaveSVG} /> </ButtonShareSave>
               </ShareSaveContainer>
             </ShareSave>
           </Header>
         </HeaderWrapper>
 
-        <NextPrevious>
-          <Previous>
-            <CloseButton>
-              <InsideCloseButton onClick={this.previousImage}>
-                <span> Previous </span>
-              </InsideCloseButton>
-            </CloseButton>
-          </Previous>
-          <Next>
-            <CloseButton>
-              <InsideCloseButton onClick={this.nextImage}>
-                <span> Next </span>
-              </InsideCloseButton>
-            </CloseButton>
-          </Next>
-        </NextPrevious>
+        <WrapperNextPrevious>
+          <NextPrevious>
+            <NextPreviousContainer>
+              <NextPreviousButton onClick={this.previousImage}>
+                <SvgIcon src={PreviousSVG}/>
+              </NextPreviousButton>
+            </NextPreviousContainer>
+
+            <NextPreviousContainer>
+              <NextPreviousButton onClick={this.nextImage}>
+                  <SvgIcon src={NextSVG}/>
+                </NextPreviousButton>
+              </NextPreviousContainer>
+          </NextPrevious>
+        </WrapperNextPrevious>
 
         <ImageWrapper>
           <ImageFlexCon>
