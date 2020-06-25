@@ -76,7 +76,8 @@ const Counter = styled.div`
   flex: 1;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: end;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 `;
 
 const ShareSave = styled.div`
