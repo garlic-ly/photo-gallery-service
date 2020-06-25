@@ -52,6 +52,7 @@ const Image5Container = styled.div`
 `;
 
 const Image1 = styled.img`
+  cursor: pointer;
   display: block;
   height: 560px;
   width: 560px;
@@ -59,6 +60,7 @@ const Image1 = styled.img`
   border-radius: 12px 0px 0px 12px;
 `
 const Image2 = styled.img`
+  cursor: pointer;
   display: block;
   height: 272px;
   width: 270px;
@@ -66,6 +68,7 @@ const Image2 = styled.img`
   padding: 0px 5px 10px 5px
 `;
 const Image3 = styled.img`
+  cursor: pointer;
   display: block;
   width: 270px;
   height: 270px;
@@ -74,6 +77,7 @@ const Image3 = styled.img`
 `;
 
 const Image4 = styled.img`
+  cursor: pointer;
   display: block;
   height: 272px;
   width: 270px;
@@ -82,13 +86,13 @@ const Image4 = styled.img`
   padding: 0px 0px 10px 5px
 `;
 const Image5 = styled.img`
+  cursor: pointer;
   display: block;
   width: 270px;
   height: 270px;
   object-fit: cover;
   border-radius: 0px 0px 12px 0px;
   padding: 5px 0px 0px 5px
-
 `;
 
 const ShowAllPhotos = styled.div`
@@ -123,23 +127,23 @@ const TextShowAllPhotos = styled.div`
   box-sizing: border-box;
 `;
 
-const ImagesList = ({data}) => {
+const ImagesList = ({data, toggle}) => {
   return (
     <WrapperOuter>
       <WrapperInner>
         <Box1>
-          <Image1Container> <Image1 src={data.images[0]}/> </Image1Container>
+          <Image1Container> <Image1 src={data.images[0]} onClick={() => {toggle()}}/> </Image1Container>
         </Box1>
         <Box23>
-          <Image2Container> <Image2 src={data.images[1]}/> </Image2Container>
-          <Image3Container> <Image3 src={data.images[2]}/> </Image3Container>
+          <Image2Container> <Image2 src={data.images[1]} onClick={() => {toggle()}}/> </Image2Container>
+          <Image3Container> <Image3 src={data.images[2]} onClick={() => {toggle()}}/> </Image3Container>
         </Box23>
         <Box45>
-          <Image4Container> <Image4 src={data.images[3]}/> </Image4Container>
-          <Image5Container> <Image5 src={data.images[4]}/> </Image5Container>
+          <Image4Container> <Image4 src={data.images[3]} onClick={() => {toggle()}}/> </Image4Container>
+          <Image5Container> <Image5 src={data.images[4]} onClick={() => {toggle()}}/> </Image5Container>
         <ShowAllPhotos>
           <ButtonShowAllPhotos>
-            <TextShowAllPhotos >Show all photos</TextShowAllPhotos>
+            <TextShowAllPhotos onClick={() => {toggle()}} >Show all photos</TextShowAllPhotos>
           </ButtonShowAllPhotos>
         </ShowAllPhotos>
         </Box45>
@@ -150,6 +154,7 @@ const ImagesList = ({data}) => {
 
 ImagesList.propTypes= {
   data: PropTypes.object,
+  toggle: PropTypes.func,
 };
 
 export default ImagesList;

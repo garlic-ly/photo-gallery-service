@@ -71,6 +71,7 @@ const ShareSaveContainer = styled.div`
 `
 
 const SpanReview = styled.span`
+  cursor: pointer;
   display: inline-flex;
   align-items: baseline;
   min-width: 0px;
@@ -79,6 +80,7 @@ const SpanReview = styled.span`
 `;
 
 const SpanLocation = styled.span`
+  cursor:pointer;
   display: inline-flex;
   align-items: baseline;
   min-width: 0px;
@@ -88,8 +90,7 @@ const SpanLocation = styled.span`
 `;
 
 const ButtonReview = styled.span`
-  border: none;
-  background: transparent;
+  cursor:pointer;
   color: #717171;
   font-size: 14px;
   line-height: 20px;
@@ -97,16 +98,13 @@ const ButtonReview = styled.span`
 `;
 
 const ButtonSuperhost = styled.span`
-  border: none;
-  background: transparent;
   color: #717171;
   font-size: 14px;
   line-height: 20px;
 `;
 
 const ButtonLocation = styled.span`
-  border: none;
-  background: transparent;
+  cursor: pointer;
   color: #717171;
   font-size: 14px;
   line-height: 20px;

@@ -1,9 +1,10 @@
 import React from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TitleBar from './TitleBar.jsx';
 import ImageGallery from './ImageGallery.jsx';
-import axios from 'axios';
-import styled from 'styled-components';
+import ImageList from './ImageList.jsx';
 
 var initialState = {
   room_name: '',
@@ -28,8 +29,16 @@ class App extends React.Component {
       error: null,
       isLoaded: true,
       data: initialState,
+      imageList: false,
     }
     this.getRoomData = this.getRoomData.bind(this);
+    this.toggleMainAndPhotoList = this.toggleMainAndPhotoList.bind(this);
+  }
+
+  toggleMainAndPhotoList() {
+    this.setState({
+      imageList: !this.state.photoList,
+    })
   }
 
   getRoomData (id) {
@@ -75,11 +84,13 @@ class App extends React.Component {
       return <Text>Error: {error.message}</Text>;
     } else if (!isLoaded) {
       return <Text> Loading... </Text>
+    } else if (this.state.imageList){
+      return <ImageList images={this.state.data.images} toggle={this.toggleMainAndPhotoList}/>
     } else {
       return (
         <Body className='container'>
           <TitleBar data={this.state.data}/>
-          <ImageGallery data={this.state.data}/>
+          <ImageGallery data={this.state.data} toggle={this.toggleMainAndPhotoList}/>
         </Body>
       )
     }
