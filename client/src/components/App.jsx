@@ -77,13 +77,12 @@ class App extends React.Component {
     this.getRoomData(id);
   }
 
-  render () {
+  renderView() {
     const { error, isLoaded, items } = this.state;
-
     if (error) {
-      return <Text>Error: {error.message}</Text>;
+      return <Body>Error: {error.message}</Body>;
     } else if (!isLoaded) {
-      return <Text> Loading... </Text>
+      return <Body> Loading... </Body>
     } else if (this.state.imageList){
       return <ImageList images={this.state.data.images} toggle={this.toggleMainAndPhotoList}/>
     } else {
@@ -94,6 +93,10 @@ class App extends React.Component {
         </Body>
       )
     }
+  }
+
+  render () {
+    return this.renderView();
   }
 }
 
