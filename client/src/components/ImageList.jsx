@@ -71,7 +71,6 @@ const CrossSvg = styled.img`
   cursor: pointer;
 `;
 
-
 const Counter = styled.div`
   flex: 1;
   justify-content: center;
@@ -222,24 +221,29 @@ class ImageList extends React.Component{
   render() {
     return (
       <Wrapper>
-
         <HeaderWrapper>
           <Header>
+
             <CloseButtonContainer>
               <CloseButton>
-                <InsideCloseButton onClick={() => { this.props.toggle() }}>
+                <InsideCloseButton onClick={() => {
+                  console.log('clicked imagelist');
+                  this.props.toggle() }}>
                   <CrossSvg src={Xmark} />
                   <span> Close </span>
                 </InsideCloseButton>
               </CloseButton>
             </CloseButtonContainer>
+
             <Counter> {this.state.currentImageIndex + 1}/{this.props.images.length} </Counter>
+
             <ShareSave>
               <ShareSaveContainer>
                 <ButtonShareSave> <SvgIcon src={ShareSVG} />  </ButtonShareSave>
                 <ButtonShareSave> <SvgIcon src={SaveSVG} /> </ButtonShareSave>
               </ShareSaveContainer>
             </ShareSave>
+
           </Header>
         </HeaderWrapper>
 

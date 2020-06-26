@@ -36,6 +36,7 @@ class App extends React.Component {
   }
 
   toggleMainAndPhotoList() {
+    console.log('clicked');
     this.setState({
       imageList: !this.state.imageList,
     })
