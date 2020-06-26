@@ -272,7 +272,6 @@ class ImageList extends React.Component{
             <ImageWrapper>
           <ImageFlexCon>
             <ImageContainer>
-              {console.log(this.props.images)}
               <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
             </ImageContainer>
           </ImageFlexCon>
@@ -302,10 +301,11 @@ class ImageList extends React.Component{
 
 
 
-ImageList.propTypes= {
+ImageList.propTypesc= {
   images: PropTypes.array,
   image_desc: PropTypes.array,
   toggle: PropTypes.func,
+  clickedPhoto: PropTypes.number,
 };
 
 export default ImageList;

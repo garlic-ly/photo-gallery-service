@@ -158,7 +158,6 @@ const PngIcon = styled.img`
 
 
 const TitleBar = ({ data }) => {
-
   const isSuperhost = () => {
     if (data.is_superhost) {
       return (<span>  · <SvgIconSuperhost src={SuperhostSVG} /> Superhost · </span>)
