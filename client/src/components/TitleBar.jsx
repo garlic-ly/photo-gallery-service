@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import SaveSVG from '../icons/save.svg';
+import SavedSVG from '../icons/saved.svg';
 import ShareSVG from '../icons/share.svg';
 import SuperhostSVG from '../icons/superhost.svg';
 import StarPNG from '../icons/star.png';
@@ -168,6 +169,16 @@ const TitleBar = ({ data }) => {
 
   const superhost = isSuperhost();
 
+  const isFavorite = () => {
+    if (data.is_favorite) {
+      return (<span><SvgIcon src={SavedSVG} /> Saved </span>)
+    } else {
+      return (<span><SvgIcon src={SaveSVG} /> Save </span>)
+    }
+  }
+
+  const favorite = isFavorite();
+
   return (
     <WrapperTitleBar>
       <Section>
@@ -179,7 +190,7 @@ const TitleBar = ({ data }) => {
             <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
             <ShareSaveContainer>
               <ButtonShareSave> <SvgIcon src={ShareSVG} /> Share </ButtonShareSave>
-              <ButtonShareSave> <SvgIcon src={SaveSVG} /> Save </ButtonShareSave>
+              <ButtonShareSave> {favorite} </ButtonShareSave>
             </ShareSaveContainer>
           </DetailContainer>
         </FlexContainer>

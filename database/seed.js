@@ -17,7 +17,7 @@ const generateRoomsData = () => {
       average_review_point: (Math.random() * (5 - 1) + 1).toFixed(2),
       number_of_reviews: Math.floor(Math.random() * (250 - 1) + 1),
       is_superhost: faker.random.boolean(),
-      is_favorite: 0,
+      is_favorite: Math.floor(Math.random() * (2 - 0) + 0),
     };
     roomsData.push(oneRoom);
   }

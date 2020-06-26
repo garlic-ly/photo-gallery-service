@@ -13,8 +13,11 @@ var initialState = {
   average_review_point: '',
   number_of_reviews: '',
   is_superhost: '',
+  is_favorite: '',
   images: [
-    '', '', '', '', '']
+    '', '', '', '', ''],
+  image_desc: [
+    '', '', '', '', ''],
 };
 
 const Body = styled.div`
@@ -48,6 +51,7 @@ class App extends React.Component {
     axios.get(`/api/rooms/${id}`)
       .then(result => {
         const data = result.data;
+        console.log(data);
         const imagesArr = [];
         const descArr = [];
         data.forEach(ele => {
@@ -61,6 +65,7 @@ class App extends React.Component {
           average_review_point: data[0].average_review_point,
           number_of_reviews: data[0].number_of_reviews,
           is_superhost: data[0].is_superhost,
+          is_favorite: data[0].is_favorite,
           images: imagesArr,
           image_description: descArr,
         };
