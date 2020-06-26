@@ -95,7 +95,7 @@ class App extends React.Component {
     } else if (!isLoaded) {
       return <Body> Loading... </Body>
     } else if (this.state.imageList) {
-      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} clickedPhoto={this.state.clickedPhoto} toggle={this.toggleMainAndPhotoList} />
+      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} clickedPhoto={this.state.clickedPhoto} isFavorite={this.state.data.is_favorite} toggle={this.toggleMainAndPhotoList} />
     } else {
       return (
         <Body className='container'>

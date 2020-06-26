@@ -5,6 +5,7 @@ import NextSVG from '../icons/next.svg';
 import PreviousSVG from '../icons/previous.svg';
 import Xmark from '../icons/xmark.svg';
 import SaveSVG from '../icons/save.svg';
+import SavedSVG from '../icons/saved.svg';
 import ShareSVG from '../icons/share.svg';
 
 const Wrapper = styled.div`
@@ -212,6 +213,7 @@ class ImageList extends React.Component{
     };
     this.nextImage = this.nextImage.bind(this);
     this.previousImage = this.previousImage.bind(this);
+    this.isFavorite = this.isFavorite.bind(this);
   }
 
   nextImage () {
@@ -232,7 +234,18 @@ class ImageList extends React.Component{
     }
   }
 
+  isFavorite () {
+    if (this.props.isFavorite) {
+      return (<SvgIcon src={SavedSVG} />)
+    } else {
+      return (<SvgIcon src={SaveSVG} />)
+    }
+
+  }
+
   render() {
+    const favorite = this.isFavorite();
+
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -255,7 +268,7 @@ class ImageList extends React.Component{
             <ShareSave>
               <ShareSaveContainer>
                 <ButtonShareSave> <SvgIcon src={ShareSVG} />  </ButtonShareSave>
-                <ButtonShareSave> <SvgIcon src={SaveSVG} /> </ButtonShareSave>
+                <ButtonShareSave> {favorite} </ButtonShareSave>
               </ShareSaveContainer>
             </ShareSave>
           </Header>
@@ -302,6 +315,7 @@ ImageList.propTypesc= {
   image_desc: PropTypes.array,
   toggle: PropTypes.func,
   clickedPhoto: PropTypes.number,
+  isFavorite: PropTypes.number,
 };
 
 export default ImageList;
