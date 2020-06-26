@@ -114,7 +114,9 @@ const ImageGallery = ({data, toggle}) => {
   const handleClick = (e) => {
     let targetImage;
 
-    if(e.target.id !== 'allPhotos') {
+    if(e.target.id === 'allPhotos') {
+      targetImage = 0;
+    } else {
       targetImage = Number(e.target.id.split("_")[1]);
     }
 
