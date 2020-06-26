@@ -48,7 +48,6 @@ class App extends React.Component {
         const data = result.data;
         const imagesArr = [];
         const descArr = [];
-        console.log(data);
         data.forEach(ele => {
           imagesArr.push(ele.image_url);
           descArr.push(ele.image_description);
@@ -101,9 +100,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('IMAGES', this.state.data.images);
-    console.log('IMAGE DESC', this.state.data.image_desc);
-
     return this.renderView();
   }
 }

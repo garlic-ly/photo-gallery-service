@@ -116,9 +116,11 @@ const SvgIcon = styled.img`
 `;
 
 const ImageWrapper = styled.div`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   height: calc(100% - 112px);
-  width: calc(100% - 192px);
+  width: 100%;
   margin: auto;
   position relative;
   box-sizing: border-box;
@@ -160,14 +162,16 @@ const WrapperNextPrevious = styled.div`
 const NextPrevious = styled.div`
   display: flex;
   justify-content: space-between;
+  align-content: center;
   margin-left: calc(2% + 19px);
   margin-right: calc(2% + 19px);
   box-sizing: border-box;
 `;
 
 const NextPreviousContainer = styled.div`
-  display: block;
+  display: flex;
   pointer-events: all;
+  align-items: center;
 `;
 
 const NextPreviousButton = styled.button`
@@ -266,6 +270,15 @@ class ImageList extends React.Component{
               </NextPreviousButton>
             </NextPreviousContainer>
 
+            <ImageWrapper>
+          <ImageFlexCon>
+            <ImageContainer>
+              {console.log(this.props.images)}
+              <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
+            </ImageContainer>
+          </ImageFlexCon>
+        </ImageWrapper>
+
             <NextPreviousContainer>
               <NextPreviousButton onClick={this.nextImage}>
                 <SvgIcon src={NextSVG} />
@@ -274,14 +287,7 @@ class ImageList extends React.Component{
           </NextPrevious>
         </WrapperNextPrevious>
 
-        <ImageWrapper>
-          <ImageFlexCon>
-            <ImageContainer>
-              {console.log(this.props.images)}
-              <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
-            </ImageContainer>
-          </ImageFlexCon>
-        </ImageWrapper>
+
 
         <BottomWrapper>
           <BottomDescriptionContainer>
