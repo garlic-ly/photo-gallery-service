@@ -110,7 +110,7 @@ const TextShowAllPhotos = styled.div`
   box-sizing: border-box;
 `;
 
-const ImagesList = ({ data, toggle }) => {
+const ImageGallery = ({ data, toggle }) => {
   return (
     <WrapperOuter>
       <WrapperInner>
@@ -135,9 +135,9 @@ const ImagesList = ({ data, toggle }) => {
   )
 }
 
-ImagesList.propTypes = {
+ImageGallery.propTypes = {
   data: PropTypes.object,
   toggle: PropTypes.func,
 };
 
-export default ImagesList;
+export default ImageGallery;

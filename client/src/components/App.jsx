@@ -47,8 +47,11 @@ class App extends React.Component {
       .then(result => {
         const data = result.data;
         const imagesArr = [];
+        const descArr = [];
+        console.log(data);
         data.forEach(ele => {
           imagesArr.push(ele.image_url);
+          descArr.push(ele.image_description);
         });
         const oneRoom = {
           room_name: data[0].room_name,
@@ -57,7 +60,8 @@ class App extends React.Component {
           average_review_point: data[0].average_review_point,
           number_of_reviews: data[0].number_of_reviews,
           is_superhost: data[0].is_superhost,
-          images: imagesArr
+          images: imagesArr,
+          image_description: descArr,
         };
 
         this.setState({
@@ -85,7 +89,7 @@ class App extends React.Component {
     } else if (!isLoaded) {
       return <Body> Loading... </Body>
     } else if (this.state.imageList) {
-      return <ImageList images={this.state.data.images} toggle={this.toggleMainAndPhotoList} />
+      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} toggle={this.toggleMainAndPhotoList} />
     } else {
       return (
         <Body className='container'>
@@ -97,6 +101,9 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('IMAGES', this.state.data.images);
+    console.log('IMAGE DESC', this.state.data.image_desc);
+
     return this.renderView();
   }
 }

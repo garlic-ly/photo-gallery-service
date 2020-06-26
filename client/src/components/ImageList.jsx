@@ -189,7 +189,7 @@ const BottomWrapper = styled.div`
   width: 100%;
   height: 80px;
   position: absolute;
-  bottom: -112px;
+  bottom: -92px;
 `;
 
 const BottomDescriptionContainer = styled.div`
@@ -277,6 +277,7 @@ class ImageList extends React.Component{
         <ImageWrapper>
           <ImageFlexCon>
             <ImageContainer>
+              {console.log(this.props.images)}
               <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
             </ImageContainer>
           </ImageFlexCon>
@@ -284,7 +285,7 @@ class ImageList extends React.Component{
 
         <BottomWrapper>
           <BottomDescriptionContainer>
-            TEST
+            {this.props.image_desc[this.state.currentImageIndex]}
           </BottomDescriptionContainer>
         </BottomWrapper>
 
@@ -299,6 +300,7 @@ class ImageList extends React.Component{
 
 ImageList.propTypes= {
   images: PropTypes.array,
+  image_desc: PropTypes.array,
   toggle: PropTypes.func,
 };
 
