@@ -30,14 +30,16 @@ class App extends React.Component {
       isLoaded: true,
       data: initialState,
       imageList: false,
+      clickedPhoto: 0,
     }
     this.getRoomData = this.getRoomData.bind(this);
     this.toggleMainAndPhotoList = this.toggleMainAndPhotoList.bind(this);
   }
 
-  toggleMainAndPhotoList() {
-    console.log('clicked');
+  toggleMainAndPhotoList(clickedPhoto) {
+    console.log(clickedPhoto, 'in APP');
     this.setState({
+      clickedPhoto: clickedPhoto,
       imageList: !this.state.imageList,
     })
   }
@@ -88,7 +90,7 @@ class App extends React.Component {
     } else if (!isLoaded) {
       return <Body> Loading... </Body>
     } else if (this.state.imageList) {
-      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} toggle={this.toggleMainAndPhotoList} />
+      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} clickedPhoto={this.state.clickedPhoto} toggle={this.toggleMainAndPhotoList} />
     } else {
       return (
         <Body className='container'>

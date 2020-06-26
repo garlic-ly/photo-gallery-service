@@ -201,14 +201,14 @@ const BottomDescriptionContainer = styled.div`
   margin: auto;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
   font-size:14px;
-
 `;
 
 class ImageList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      currentImageIndex: 0,
+      currentImageIndex: props.clickedPhoto,
+      isItFirst: false,
     };
     this.nextImage = this.nextImage.bind(this);
     this.previousImage = this.previousImage.bind(this);
@@ -285,20 +285,16 @@ class ImageList extends React.Component{
           </NextPrevious>
         </WrapperBody>
 
-
         <BottomWrapper>
           <BottomDescriptionContainer>
             {this.props.image_desc[this.state.currentImageIndex]}
           </BottomDescriptionContainer>
         </BottomWrapper>
 
-
       </Wrapper>
     )
   }
-
 };
-
 
 
 ImageList.propTypesc= {

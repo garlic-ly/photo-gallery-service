@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
-import ImageList from './ImageList.jsx';
 
 const WrapperOuter = styled.div`
   display: block;
@@ -111,58 +110,40 @@ const TextShowAllPhotos = styled.div`
   box-sizing: border-box;
 `;
 
-class ImageGallery extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clickedPhoto: 0
+const ImageGallery = ({data, toggle}) => {
+  const handleClick = (e) => {
+    let targetImage;
+
+    if(e.target.id !== 'allPhotos') {
+      targetImage = Number(e.target.id.split("_")[1]);
     }
 
-    this.handleClick = this.handleClick.bind(this);
+    toggle(targetImage);
   };
 
-  handleClick(e) {
-    if(e.target.id === 'allPhotos') {
-      this.setState({
-        clickedPhoto: 0,
-      });
-    } else {
-      const targetImage = e.target.id.split("_")[1];
-      this.setState({
-        clickedPhoto: Number(targetImage)
-      });
-    }
-
-    <ImageList clickedPhoto={this.state.clickedPhoto}/>
-    this.props.toggle();
-  };
-
-  render () {
-    return (
-      <WrapperOuter>
-        <WrapperInner>
-          <Box1>
-            <ImageContainer> <Image1 src={this.props.data.images[0]} id="room_0" onClick={(e) => this.handleClick(e)} /> </ImageContainer>
-          </Box1>
-          <Box23>
-            <ImageContainer> <Image2 src={this.props.data.images[1]} id="room_1" onClick={(e) => this.handleClick(e)} /> </ImageContainer>
-            <ImageContainer> <Image3 src={this.props.data.images[2]} id="room_2" onClick={(e) => this.handleClick(e)} /> </ImageContainer>
-          </Box23>
-          <Box45>
-            <ImageContainer> <Image4 src={this.props.data.images[3]} id="room_3" onClick={(e) => this.handleClick(e)} /> </ImageContainer>
-            <ImageContainer> <Image5 src={this.props.data.images[4]} id="room_4" onClick={(e) => this.handleClick(e)} /> </ImageContainer>
-            <ShowAllPhotos>
-              <ButtonShowAllPhotos>
-                <TextShowAllPhotos id="allPhotos" onClick={(e) => { this.handleClick(e) }} >Show all photos</TextShowAllPhotos>
-              </ButtonShowAllPhotos>
-            </ShowAllPhotos>
-          </Box45>
-        </WrapperInner>
-      </WrapperOuter>
-    )
-  };
+  return (
+    <WrapperOuter>
+      <WrapperInner>
+        <Box1>
+          <ImageContainer> <Image1 src={data.images[0]} id="room_0" onClick={(e) => handleClick(e)} /> </ImageContainer>
+        </Box1>
+        <Box23>
+          <ImageContainer> <Image2 src={data.images[1]} id="room_1" onClick={(e) => handleClick(e)} /> </ImageContainer>
+          <ImageContainer> <Image3 src={data.images[2]} id="room_2" onClick={(e) => handleClick(e)} /> </ImageContainer>
+        </Box23>
+        <Box45>
+          <ImageContainer> <Image4 src={data.images[3]} id="room_3" onClick={(e) => handleClick(e)} /> </ImageContainer>
+          <ImageContainer> <Image5 src={data.images[4]} id="room_4" onClick={(e) => handleClick(e)} /> </ImageContainer>
+          <ShowAllPhotos>
+            <ButtonShowAllPhotos>
+              <TextShowAllPhotos id="allPhotos" onClick={(e) => { handleClick(e) }} >Show all photos</TextShowAllPhotos>
+            </ButtonShowAllPhotos>
+          </ShowAllPhotos>
+        </Box45>
+      </WrapperInner>
+    </WrapperOuter>
+  );
 }
-
 
 ImageGallery.propTypes = {
   data: PropTypes.object,
