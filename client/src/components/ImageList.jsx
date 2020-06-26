@@ -186,7 +186,19 @@ const NextPreviousButton = styled.button`
 
 const BottomWrapper = styled.div`
   display: block;
+  width: 100%;
   height: 80px;
+  position: absolute;
+  bottom: -112px;
+`;
+
+const BottomDescriptionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  font-size:14px;
+
 `;
 
 class ImageList extends React.Component{
@@ -227,7 +239,8 @@ class ImageList extends React.Component{
               <CloseButton>
                 <InsideCloseButton onClick={() => {
                   console.log('clicked imagelist');
-                  this.props.toggle(); }}>
+                  this.props.toggle();
+                }}>
                   <CrossSvg src={Xmark} />
                   <span> Close </span>
                 </InsideCloseButton>
@@ -242,35 +255,38 @@ class ImageList extends React.Component{
                 <ButtonShareSave> <SvgIcon src={SaveSVG} /> </ButtonShareSave>
               </ShareSaveContainer>
             </ShareSave>
-
           </Header>
         </HeaderWrapper>
 
-
         <WrapperNextPrevious>
           <NextPrevious>
-              <NextPreviousContainer>
-                <NextPreviousButton onClick={this.previousImage}>
-                  <SvgIcon src={PreviousSVG}/>
-                </NextPreviousButton>
-              </NextPreviousContainer>
+            <NextPreviousContainer>
+              <NextPreviousButton onClick={this.previousImage}>
+                <SvgIcon src={PreviousSVG} />
+              </NextPreviousButton>
+            </NextPreviousContainer>
 
-              <NextPreviousContainer>
-                <NextPreviousButton onClick={this.nextImage}>
-                    <SvgIcon src={NextSVG}/>
-                  </NextPreviousButton>
-                </NextPreviousContainer>
-            </NextPrevious>
-          </WrapperNextPrevious>
+            <NextPreviousContainer>
+              <NextPreviousButton onClick={this.nextImage}>
+                <SvgIcon src={NextSVG} />
+              </NextPreviousButton>
+            </NextPreviousContainer>
+          </NextPrevious>
+        </WrapperNextPrevious>
 
         <ImageWrapper>
           <ImageFlexCon>
             <ImageContainer>
-              <CurrentImage src={this.props.images[this.state.currentImageIndex]}/>
+              <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
             </ImageContainer>
           </ImageFlexCon>
         </ImageWrapper>
 
+        <BottomWrapper>
+          <BottomDescriptionContainer>
+          TEST
+          </BottomDescriptionContainer>
+        </BottomWrapper>
 
 
       </Wrapper>
