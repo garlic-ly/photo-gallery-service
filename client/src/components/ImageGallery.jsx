@@ -57,7 +57,7 @@ const Image3 = styled.img`
   width: 270px;
   height: 270px;
   object-fit: cover;
-  padding: 5px 5px 0px 5px
+  padding: 5px 5px 0px 5px;
 `;
 
 const Image4 = styled.img`
@@ -67,7 +67,7 @@ const Image4 = styled.img`
   width: 270px;
   object-fit: cover;
   border-radius: 0px 12px 0px 0px;
-  padding: 0px 0px 10px 5px
+  padding: 0px 0px 10px 5px;
 `;
 const Image5 = styled.img`
   cursor: pointer;
@@ -76,7 +76,7 @@ const Image5 = styled.img`
   height: 270px;
   object-fit: cover;
   border-radius: 0px 0px 12px 0px;
-  padding: 5px 0px 0px 5px
+  padding: 5px 0px 0px 5px;
 `;
 
 const ShowAllPhotos = styled.div`
@@ -87,7 +87,6 @@ const ShowAllPhotos = styled.div`
   right: 24px;
   z-index: 3;
   box-sizing: border-box;
-
 `;
 
 const ButtonShowAllPhotos = styled.div`
@@ -103,7 +102,7 @@ const ButtonShowAllPhotos = styled.div`
   border-radius: 8px;
   border: 1px solid #222222;
   background: #ffffff;
-`
+`;
 
 const TextShowAllPhotos = styled.div`
   display: flex;

@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const HeaderWrapper = styled.section`
   display:block;
- `;
+`;
 
 const Header = styled.div`
   padding: 40px 40px 40px 20px;
@@ -148,7 +148,7 @@ const CurrentImage = styled.img`
 `;
 
 const WrapperNextPrevious = styled.div`
-  position: absolute;
+  // position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
@@ -183,7 +183,6 @@ const NextPreviousButton = styled.button`
   width: 48px;
   height: 48px;
 `;
-
 
 const BottomWrapper = styled.div`
   display: block;
@@ -228,7 +227,7 @@ class ImageList extends React.Component{
               <CloseButton>
                 <InsideCloseButton onClick={() => {
                   console.log('clicked imagelist');
-                  this.props.toggle() }}>
+                  this.props.toggle(); }}>
                   <CrossSvg src={Xmark} />
                   <span> Close </span>
                 </InsideCloseButton>
@@ -247,21 +246,22 @@ class ImageList extends React.Component{
           </Header>
         </HeaderWrapper>
 
+
         <WrapperNextPrevious>
           <NextPrevious>
-            <NextPreviousContainer>
-              <NextPreviousButton onClick={this.previousImage}>
-                <SvgIcon src={PreviousSVG}/>
-              </NextPreviousButton>
-            </NextPreviousContainer>
-
-            <NextPreviousContainer>
-              <NextPreviousButton onClick={this.nextImage}>
-                  <SvgIcon src={NextSVG}/>
+              <NextPreviousContainer>
+                <NextPreviousButton onClick={this.previousImage}>
+                  <SvgIcon src={PreviousSVG}/>
                 </NextPreviousButton>
               </NextPreviousContainer>
-          </NextPrevious>
-        </WrapperNextPrevious>
+
+              <NextPreviousContainer>
+                <NextPreviousButton onClick={this.nextImage}>
+                    <SvgIcon src={NextSVG}/>
+                  </NextPreviousButton>
+                </NextPreviousContainer>
+            </NextPrevious>
+          </WrapperNextPrevious>
 
         <ImageWrapper>
           <ImageFlexCon>
@@ -270,6 +270,8 @@ class ImageList extends React.Component{
             </ImageContainer>
           </ImageFlexCon>
         </ImageWrapper>
+
+
 
       </Wrapper>
     )
