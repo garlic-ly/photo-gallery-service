@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS airbnbClone;
-  CREATE DATABASE airbnbClone;
+  CREATE DATABASE garlicly;
 
-USE airbnbClone;
+USE garlicly;
 
 DROP TABLE IF EXISTS rooms;
 CREATE TABLE rooms (
@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS images;
 CREATE TABLE images (
   id INT NOT NULL auto_increment,
   image_url varchar(250) NOT NULL,
+  image_description varchar(250) NOT NULL,
   room_id INT,
   PRIMARY KEY (id),
   FOREIGN KEY (room_id) REFERENCES rooms(id)

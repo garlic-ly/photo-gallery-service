@@ -14,40 +14,45 @@ var initialState = {
   number_of_reviews: '',
   is_superhost: '',
   images: [
-    '','', '', '', '']
+    '', '', '', '', '']
 };
 
-const Body = styled.div `
+const Body = styled.div`
   font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
   background-color: #fff;
 `
 
 class App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: true,
       data: initialState,
       imageList: false,
+      clickedPhoto: 0,
     }
     this.getRoomData = this.getRoomData.bind(this);
     this.toggleMainAndPhotoList = this.toggleMainAndPhotoList.bind(this);
   }
 
-  toggleMainAndPhotoList() {
+  toggleMainAndPhotoList(clickedPhoto) {
+    console.log(clickedPhoto, 'in APP');
     this.setState({
+      clickedPhoto: clickedPhoto,
       imageList: !this.state.imageList,
     })
   }
 
-  getRoomData (id) {
+  getRoomData(id) {
     axios.get(`/api/rooms/${id}`)
       .then(result => {
         const data = result.data;
         const imagesArr = [];
+        const descArr = [];
         data.forEach(ele => {
           imagesArr.push(ele.image_url);
+          descArr.push(ele.image_description);
         });
         const oneRoom = {
           room_name: data[0].room_name,
@@ -56,7 +61,8 @@ class App extends React.Component {
           average_review_point: data[0].average_review_point,
           number_of_reviews: data[0].number_of_reviews,
           is_superhost: data[0].is_superhost,
-          images: imagesArr
+          images: imagesArr,
+          image_description: descArr,
         };
 
         this.setState({
@@ -83,19 +89,19 @@ class App extends React.Component {
       return <Body>Error: {error.message}</Body>;
     } else if (!isLoaded) {
       return <Body> Loading... </Body>
-    } else if (this.state.imageList){
-      return <ImageList images={this.state.data.images} toggle={this.toggleMainAndPhotoList}/>
+    } else if (this.state.imageList) {
+      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} clickedPhoto={this.state.clickedPhoto} toggle={this.toggleMainAndPhotoList} />
     } else {
       return (
         <Body className='container'>
-          <TitleBar data={this.state.data}/>
-          <ImageGallery data={this.state.data} toggle={this.toggleMainAndPhotoList}/>
+          <TitleBar data={this.state.data} />
+          <ImageGallery data={this.state.data} toggle={this.toggleMainAndPhotoList} />
         </Body>
       )
     }
   }
 
-  render () {
+  render() {
     return this.renderView();
   }
 }

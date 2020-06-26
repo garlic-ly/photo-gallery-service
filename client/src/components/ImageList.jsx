@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const HeaderWrapper = styled.section`
   display:block;
- `;
+`;
 
 const Header = styled.div`
   padding: 40px 40px 40px 20px;
@@ -40,7 +40,6 @@ const CloseButtonContainer = styled.div`
   flex-shrink: 0;
   flex-basis: auto;
   display: block;
-
 `;
 
 const CloseButton = styled.button`
@@ -76,8 +75,8 @@ const Counter = styled.div`
   flex: 1;
   justify-content: center;
   align-items: center;
-  text-align: center;
-
+  text-align: end;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 `;
 
 const ShareSave = styled.div`
@@ -90,7 +89,8 @@ const ShareSaveContainer = styled.div`
   position: absolute;
   right: 50px;
   box-sizing: border-box;
-`
+`;
+
 const ButtonShareSave = styled.button`
   display: inline-block;
   cursor: pointer;
@@ -116,9 +116,11 @@ const SvgIcon = styled.img`
 `;
 
 const ImageWrapper = styled.div`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   height: calc(100% - 112px);
-  width: calc(100% - 192px);
+  width: 100%;
   margin: auto;
   position relative;
   box-sizing: border-box;
@@ -127,7 +129,7 @@ const ImageWrapper = styled.div`
 const ImageFlexCon = styled.div`
   height: 100%;
   display: block;
-`
+`;
 
 const ImageContainer = styled.div`
   display: inline-block;
@@ -147,32 +149,66 @@ const CurrentImage = styled.img`
   position: static;
 `;
 
+const WrapperBody = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+`;
+
 const NextPrevious = styled.div`
   display: flex;
-`;
-
-const Previous = styled.div`
-  flex: 1;
   justify-content: space-between;
+  align-content: center;
+  margin-left: calc(2% + 19px);
+  margin-right: calc(2% + 19px);
+  box-sizing: border-box;
+`;
+
+const NextPreviousContainer = styled.div`
+  display: flex;
+  pointer-events: all;
   align-items: center;
 `;
 
-const Next = styled.div`
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
-`
+const NextPreviousButton = styled.button`
+  display:inline-block;
+  color: #222222;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  border-color: #484848;
+  border-width: 1px;
+  background: transparent;
+  font-zie: 100%;
+  width: 48px;
+  height: 48px;
+`;
 
 const BottomWrapper = styled.div`
   display: block;
+  width: 100%;
   height: 80px;
+  position: absolute;
+  bottom: -92px;
+`;
+
+const BottomDescriptionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  font-size:14px;
 `;
 
 class ImageList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      currentImageIndex: 0,
+      currentImageIndex: props.clickedPhoto,
+      isItFirst: false,
     };
     this.nextImage = this.nextImage.bind(this);
     this.previousImage = this.previousImage.bind(this);
@@ -196,71 +232,76 @@ class ImageList extends React.Component{
     }
   }
 
-  render () {
+  render() {
     return (
       <Wrapper>
-      <HeaderWrapper>
-        <Header>
-          <CloseButtonContainer>
-            <CloseButton>
-              <InsideCloseButton onClick={() => {this.props.toggle()}}>
-                <CrossSvg src={Xmark}/>
-                <span> Close </span>
-              </InsideCloseButton>
-            </CloseButton>
+        <HeaderWrapper>
+          <Header>
 
+            <CloseButtonContainer>
+              <CloseButton>
+                <InsideCloseButton onClick={() => {
+                  console.log('clicked imagelist');
+                  this.props.toggle();
+                }}>
+                  <CrossSvg src={Xmark} />
+                  <span> Close </span>
+                </InsideCloseButton>
+              </CloseButton>
+            </CloseButtonContainer>
 
-          </CloseButtonContainer>
+            <Counter> {this.state.currentImageIndex + 1}/{this.props.images.length} </Counter>
 
-        <Counter> {this.state.currentImageIndex + 1}/{this.props.images.length} </Counter>
+            <ShareSave>
+              <ShareSaveContainer>
+                <ButtonShareSave> <SvgIcon src={ShareSVG} />  </ButtonShareSave>
+                <ButtonShareSave> <SvgIcon src={SaveSVG} /> </ButtonShareSave>
+              </ShareSaveContainer>
+            </ShareSave>
+          </Header>
+        </HeaderWrapper>
 
-        <ShareSave>
-          <ShareSaveContainer>
-            <ButtonShareSave> <SvgIcon src={ShareSVG}/> Share </ButtonShareSave>
-            <ButtonShareSave> <SvgIcon src={SaveSVG}/> Save </ButtonShareSave>
-          </ShareSaveContainer>
-        </ShareSave>
+        <WrapperBody>
+          <NextPrevious>
+            <NextPreviousContainer>
+              <NextPreviousButton onClick={this.previousImage}>
+                <SvgIcon src={PreviousSVG} />
+              </NextPreviousButton>
+            </NextPreviousContainer>
 
-        </Header>
-      </HeaderWrapper>
+            <ImageWrapper>
+          <ImageFlexCon>
+            <ImageContainer>
+              <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
+            </ImageContainer>
+          </ImageFlexCon>
+        </ImageWrapper>
 
-      <NextPrevious>
-      <Previous>
-          <CloseButton>
-            <InsideCloseButton onClick={this.previousImage}>
-              <span> Previous </span>
-            </InsideCloseButton>
-          </CloseButton>
-        </Previous>
-        <Next>
-          <CloseButton>
-            <InsideCloseButton onClick={this.nextImage}>
-              <span> Next </span>
-            </InsideCloseButton>
-          </CloseButton>
-        </Next>
-      </NextPrevious>
+            <NextPreviousContainer>
+              <NextPreviousButton onClick={this.nextImage}>
+                <SvgIcon src={NextSVG} />
+              </NextPreviousButton>
+            </NextPreviousContainer>
+          </NextPrevious>
+        </WrapperBody>
 
-      <ImageWrapper>
-        <ImageFlexCon>
-        <ImageContainer>
-          <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
-        </ImageContainer>
-        </ImageFlexCon>
-    </ImageWrapper>
+        <BottomWrapper>
+          <BottomDescriptionContainer>
+            {this.props.image_desc[this.state.currentImageIndex]}
+          </BottomDescriptionContainer>
+        </BottomWrapper>
 
-
-    </Wrapper>
+      </Wrapper>
     )
   }
-
 };
 
 
-
-ImageList.propTypes= {
+ImageList.propTypesc= {
   images: PropTypes.array,
+  image_desc: PropTypes.array,
   toggle: PropTypes.func,
+  clickedPhoto: PropTypes.number,
 };
 
 export default ImageList;
