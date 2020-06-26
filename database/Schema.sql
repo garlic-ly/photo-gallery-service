@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS airbnbClone;
+DROP DATABASE IF EXISTS garlicly;
   CREATE DATABASE garlicly;
 
 USE garlicly;
@@ -12,6 +12,7 @@ CREATE TABLE rooms (
   average_review_point varchar(10),
   number_of_reviews int(5),
   is_superhost boolean,
+  is_favorite boolean,
   PRIMARY KEY (id)
 );
 
