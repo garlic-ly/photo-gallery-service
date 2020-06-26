@@ -156,7 +156,19 @@ const PngIcon = styled.img`
   cursor: pointer;
 `;
 
+
 const TitleBar = ({ data }) => {
+
+  const isSuperhost = () => {
+    if (data.is_superhost) {
+      return (<span>  · <SvgIconSuperhost src={SuperhostSVG} /> Superhost · </span>)
+    } else {
+      return (" · ")
+    }
+  };
+
+  const superhost = isSuperhost();
+
   return (
     <WrapperTitleBar>
       <Section>
@@ -164,7 +176,7 @@ const TitleBar = ({ data }) => {
         <FlexContainer>
           <DetailContainer>
             <SpanReview><span> <PngIcon src={StarPNG} /> </span>{data.average_review_point} ({data.number_of_reviews})  </SpanReview>
-            <span> · <SvgIconSuperhost src={SuperhostSVG} /> Superhost · </span>
+             {superhost}
             <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
             <ShareSaveContainer>
               <ButtonShareSave> <SvgIcon src={ShareSVG} /> Share </ButtonShareSave>

@@ -149,8 +149,7 @@ const CurrentImage = styled.img`
   position: static;
 `;
 
-const WrapperNextPrevious = styled.div`
-  // position: absolute;
+const WrapperBody = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -262,7 +261,7 @@ class ImageList extends React.Component{
           </Header>
         </HeaderWrapper>
 
-        <WrapperNextPrevious>
+        <WrapperBody>
           <NextPrevious>
             <NextPreviousContainer>
               <NextPreviousButton onClick={this.previousImage}>
@@ -285,8 +284,7 @@ class ImageList extends React.Component{
               </NextPreviousButton>
             </NextPreviousContainer>
           </NextPrevious>
-        </WrapperNextPrevious>
-
+        </WrapperBody>
 
 
         <BottomWrapper>
