@@ -284,7 +284,7 @@ class ImageList extends React.Component{
 
         <BottomWrapper>
           <BottomDescriptionContainer>
-          TEST
+            TEST
           </BottomDescriptionContainer>
         </BottomWrapper>
 

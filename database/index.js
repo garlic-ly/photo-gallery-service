@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: config.USERNAME_mysql_server,
   password: config.PASSWORD_mysql_server,
-  database: 'airbnbClone',
+  database: 'garlicly',
 });
 
 connection.connect();

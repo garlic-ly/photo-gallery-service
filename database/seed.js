@@ -44,8 +44,10 @@ const generateImagesData = () => {
     // there are 70 photos in S3 Bucket and will be chosen randomly
     for (let j = 0; j < randomNumberOfImage; j += 1) {
       const imageId = Math.floor(Math.random() * (70 - 1) + 1);
+      const numberOfWords = Math.floor(Math.random() * (6 - 0) + 0);
       const oneImage = {
         image_url: `https://rooms-images-128.s3-us-west-1.amazonaws.com/image${imageId}.jpg`,
+        image_description: faker.lorem.words(numberOfWords),
         room_id: i,
       };
       imagesData.push(oneImage);
@@ -54,10 +56,10 @@ const generateImagesData = () => {
 };
 
 const seedImages = (data) => {
-  const query = 'INSERT INTO images (image_url, room_id) VALUES(?, ?)';
+  const query = 'INSERT INTO images (image_url, image_description, room_id) VALUES(?, ?, ?)';
 
   for (let i = 0; i < data.length; i += 1) {
-    db.query(query, [data[i].image_url, data[i].room_id], (err, result, field) => {
+    db.query(query, [data[i].image_url, data[i].image_description, data[i].room_id], (err, result, field) => {
       if (err) {
         console.log('Error: ', err);
       }
