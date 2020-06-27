@@ -50,11 +50,9 @@ class App extends React.Component {
   }
 
   toggleFavorite() {
-    console.log('clicked from APP')
     this.setState({
       is_favorite: !this.state.is_favorite,
     })
-    console.log(this.state);
     this.updateFavorite();
   }
 

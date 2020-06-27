@@ -69,7 +69,7 @@ const ShareSaveContainer = styled.div`
   position: absolute;
   right: 0px;
   box-sizing: border-box;
-`
+`;
 
 const SpanReview = styled.span`
   cursor: pointer;
@@ -206,5 +206,3 @@ TitleBar.propTypes = {
 };
 
 export default TitleBar;
-
-{/* <img src={SaveSVG}/> */ }
