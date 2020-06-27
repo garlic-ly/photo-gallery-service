@@ -113,7 +113,7 @@ const ButtonLocation = styled.span`
   text-decoration: underline;
 `;
 
-const ButtonShareSave = styled.button`
+const ButtonShareSave = styled.div`
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -158,7 +158,7 @@ const PngIcon = styled.img`
 `;
 
 
-const TitleBar = ({ data }) => {
+const TitleBar = ({ data, toggleFavorite }) => {
   const isSuperhost = () => {
     if (data.is_superhost) {
       return (<span>  · <SvgIconSuperhost src={SuperhostSVG} /> Superhost · </span>)
@@ -189,8 +189,8 @@ const TitleBar = ({ data }) => {
              {superhost}
             <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
             <ShareSaveContainer>
-              <ButtonShareSave> <SvgIcon src={ShareSVG} /> Share </ButtonShareSave>
-              <ButtonShareSave> {favorite} </ButtonShareSave>
+              <ButtonShareSave onClick={ () => {toggleFavorite()}}> <SvgIcon src={ShareSVG} /> Share  </ButtonShareSave>
+              <ButtonShareSave onClick={ () => {toggleFavorite()}}>  {favorite} </ButtonShareSave>
             </ShareSaveContainer>
           </DetailContainer>
         </FlexContainer>
@@ -201,6 +201,8 @@ const TitleBar = ({ data }) => {
 
 TitleBar.propTypes = {
   data: PropTypes.object,
+  toggleFavorite: PropTypes.func,
+
 };
 
 export default TitleBar;

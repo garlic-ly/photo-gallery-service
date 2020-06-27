@@ -236,11 +236,10 @@ class ImageList extends React.Component{
 
   isFavorite () {
     if (this.props.isFavorite) {
-      return (<SvgIcon src={SavedSVG} />)
+      return (<SvgIcon src={SavedSVG} onClick={() => {this.props.toggleFavorite()}}/>)
     } else {
-      return (<SvgIcon src={SaveSVG} />)
+      return (<SvgIcon src={SaveSVG} onClick={() => {this.props.toggleFavorite()}}/>)
     }
-
   }
 
   render() {
@@ -254,7 +253,6 @@ class ImageList extends React.Component{
             <CloseButtonContainer>
               <CloseButton>
                 <InsideCloseButton onClick={() => {
-                  console.log('clicked imagelist');
                   this.props.toggle();
                 }}>
                   <CrossSvg src={Xmark} />
@@ -316,6 +314,7 @@ ImageList.propTypesc= {
   toggle: PropTypes.func,
   clickedPhoto: PropTypes.number,
   isFavorite: PropTypes.number,
+  toggleFavorite: PropTypes.func,
 };
 
 export default ImageList;
