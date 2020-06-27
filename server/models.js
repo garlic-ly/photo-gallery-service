@@ -11,5 +11,17 @@ module.exports = {
       }
     });
   },
+
+  patch: (id, is_favorite, callback) => {
+    console.log(is_favorite, "IS FAVORITE");
+    const q = 'UPDATE rooms SET is_favorite = ? where id = ?';
+    db.query(q, [is_favorite, id], (err, result) => {
+      if(err) {
+        callback(err, null);
+      } else {
+        callback(null, result);
+      }
+    })
+  }
 };
 

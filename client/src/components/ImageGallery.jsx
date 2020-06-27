@@ -23,11 +23,7 @@ const Box1 = styled.div`
   flex: 2;
 `;
 
-const Box23 = styled.div`
-  flex: 1;
-`;
-
-const Box45 = styled.div`
+const Box2345 = styled.div`
   flex: 1;
 `;
 
@@ -43,6 +39,7 @@ const Image1 = styled.img`
   object-fit: cover;
   border-radius: 12px 0px 0px 12px;
 `;
+
 const Image2 = styled.img`
   cursor: pointer;
   display: block;
@@ -51,6 +48,7 @@ const Image2 = styled.img`
   object-fit: cover;
   padding: 0px 5px 10px 5px;
 `;
+
 const Image3 = styled.img`
   cursor: pointer;
   display: block;
@@ -114,7 +112,9 @@ const ImageGallery = ({data, toggle}) => {
   const handleClick = (e) => {
     let targetImage;
 
-    if(e.target.id !== 'allPhotos') {
+    if(e.target.id === 'allPhotos') {
+      targetImage = 0;
+    } else {
       targetImage = Number(e.target.id.split("_")[1]);
     }
 
@@ -127,11 +127,11 @@ const ImageGallery = ({data, toggle}) => {
         <Box1>
           <ImageContainer> <Image1 src={data.images[0]} id="room_0" onClick={(e) => handleClick(e)} /> </ImageContainer>
         </Box1>
-        <Box23>
+        <Box2345>
           <ImageContainer> <Image2 src={data.images[1]} id="room_1" onClick={(e) => handleClick(e)} /> </ImageContainer>
           <ImageContainer> <Image3 src={data.images[2]} id="room_2" onClick={(e) => handleClick(e)} /> </ImageContainer>
-        </Box23>
-        <Box45>
+        </Box2345>
+        <Box2345>
           <ImageContainer> <Image4 src={data.images[3]} id="room_3" onClick={(e) => handleClick(e)} /> </ImageContainer>
           <ImageContainer> <Image5 src={data.images[4]} id="room_4" onClick={(e) => handleClick(e)} /> </ImageContainer>
           <ShowAllPhotos>
@@ -139,7 +139,7 @@ const ImageGallery = ({data, toggle}) => {
               <TextShowAllPhotos id="allPhotos" onClick={(e) => { handleClick(e) }} >Show all photos</TextShowAllPhotos>
             </ButtonShowAllPhotos>
           </ShowAllPhotos>
-        </Box45>
+        </Box2345>
       </WrapperInner>
     </WrapperOuter>
   );

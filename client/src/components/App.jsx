@@ -13,8 +13,11 @@ var initialState = {
   average_review_point: '',
   number_of_reviews: '',
   is_superhost: '',
+  is_favorite: '',
   images: [
-    '', '', '', '', '']
+    '', '', '', '', ''],
+  image_desc: [
+    '', '', '', '', ''],
 };
 
 const Body = styled.div`
@@ -31,17 +34,26 @@ class App extends React.Component {
       data: initialState,
       imageList: false,
       clickedPhoto: 0,
+      is_favorite: 0,
     }
     this.getRoomData = this.getRoomData.bind(this);
     this.toggleMainAndPhotoList = this.toggleMainAndPhotoList.bind(this);
+    this.toggleFavorite = this.toggleFavorite.bind(this);
+    this.updateFavorite = this.updateFavorite.bind(this);
   }
 
   toggleMainAndPhotoList(clickedPhoto) {
-    console.log(clickedPhoto, 'in APP');
     this.setState({
       clickedPhoto: clickedPhoto,
       imageList: !this.state.imageList,
     })
+  }
+
+  toggleFavorite() {
+    this.setState({
+      is_favorite: !this.state.is_favorite,
+    })
+    this.updateFavorite();
   }
 
   getRoomData(id) {
@@ -61,6 +73,7 @@ class App extends React.Component {
           average_review_point: data[0].average_review_point,
           number_of_reviews: data[0].number_of_reviews,
           is_superhost: data[0].is_superhost,
+          is_favorite: data[0].is_favorite,
           images: imagesArr,
           image_description: descArr,
         };
@@ -68,6 +81,7 @@ class App extends React.Component {
         this.setState({
           isLoaded: true,
           data: oneRoom,
+          is_favorite: oneRoom.is_favorite,
         });
       })
       .catch(error => {
@@ -77,6 +91,26 @@ class App extends React.Component {
         })
       });
   }
+
+  updateFavorite() {
+    const id = window.location.pathname.split('/')[2];
+    axios({
+      method: 'patch',
+      url: `/api/rooms/${id}`,
+      data: {
+        is_favorite: !this.state.is_favorite,
+      }
+    })
+    .then(() => {
+      this.getRoomData(id);
+    })
+    .catch((err) => {
+      this.setState({
+        error
+      })
+    })
+  }
+
 
   componentDidMount() {
     const id = window.location.pathname.split('/')[2];
@@ -90,11 +124,11 @@ class App extends React.Component {
     } else if (!isLoaded) {
       return <Body> Loading... </Body>
     } else if (this.state.imageList) {
-      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} clickedPhoto={this.state.clickedPhoto} toggle={this.toggleMainAndPhotoList} />
+      return <ImageList images={this.state.data.images} image_desc={this.state.data.image_description} clickedPhoto={this.state.clickedPhoto} isFavorite={this.state.data.is_favorite} toggle={this.toggleMainAndPhotoList} toggleFavorite={this.toggleFavorite} />
     } else {
       return (
         <Body className='container'>
-          <TitleBar data={this.state.data} />
+          <TitleBar data={this.state.data} toggleFavorite={this.toggleFavorite} />
           <ImageGallery data={this.state.data} toggle={this.toggleMainAndPhotoList} />
         </Body>
       )

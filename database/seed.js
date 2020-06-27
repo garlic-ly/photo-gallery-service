@@ -17,16 +17,17 @@ const generateRoomsData = () => {
       average_review_point: (Math.random() * (5 - 1) + 1).toFixed(2),
       number_of_reviews: Math.floor(Math.random() * (250 - 1) + 1),
       is_superhost: faker.random.boolean(),
+      is_favorite: Math.floor(Math.random() * (2 - 0) + 0),
     };
     roomsData.push(oneRoom);
   }
 };
 
 const seedRooms = (data) => {
-  const query = 'INSERT INTO rooms (room_name, location_city, location_country, average_review_point, number_of_reviews, is_superhost) VALUES(?, ?, ?, ?, ?, ?)';
+  const query = 'INSERT INTO rooms (room_name, location_city, location_country, average_review_point, number_of_reviews, is_superhost, is_favorite) VALUES(?, ?, ?, ?, ?, ?, ?)';
 
   for (let i = 0; i < data.length; i += 1) {
-    db.query(query, [data[i].room_name, data[i].location_city, data[i].location_country, data[i].average_review_point, data[i].number_of_reviews, data[i].is_superhost], (err, result, field) => {
+    db.query(query, [data[i].room_name, data[i].location_city, data[i].location_country, data[i].average_review_point, data[i].number_of_reviews, data[i].is_superhost, data[i].is_favorite], (err, result, field) => {
       if (err) {
         console.log(err);
       }

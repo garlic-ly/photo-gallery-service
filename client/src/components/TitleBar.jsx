@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import SaveSVG from '../icons/save.svg';
+import SavedSVG from '../icons/saved.svg';
 import ShareSVG from '../icons/share.svg';
 import SuperhostSVG from '../icons/superhost.svg';
 import StarPNG from '../icons/star.png';
@@ -68,7 +69,7 @@ const ShareSaveContainer = styled.div`
   position: absolute;
   right: 0px;
   box-sizing: border-box;
-`
+`;
 
 const SpanReview = styled.span`
   cursor: pointer;
@@ -112,7 +113,7 @@ const ButtonLocation = styled.span`
   text-decoration: underline;
 `;
 
-const ButtonShareSave = styled.button`
+const ButtonShareSave = styled.div`
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -157,7 +158,7 @@ const PngIcon = styled.img`
 `;
 
 
-const TitleBar = ({ data }) => {
+const TitleBar = ({ data, toggleFavorite }) => {
   const isSuperhost = () => {
     if (data.is_superhost) {
       return (<span>  · <SvgIconSuperhost src={SuperhostSVG} /> Superhost · </span>)
@@ -167,6 +168,16 @@ const TitleBar = ({ data }) => {
   };
 
   const superhost = isSuperhost();
+
+  const isFavorite = () => {
+    if (data.is_favorite) {
+      return (<span><SvgIcon src={SavedSVG} /> Saved </span>)
+    } else {
+      return (<span><SvgIcon src={SaveSVG} /> Save </span>)
+    }
+  }
+
+  const favorite = isFavorite();
 
   return (
     <WrapperTitleBar>
@@ -178,8 +189,8 @@ const TitleBar = ({ data }) => {
              {superhost}
             <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
             <ShareSaveContainer>
-              <ButtonShareSave> <SvgIcon src={ShareSVG} /> Share </ButtonShareSave>
-              <ButtonShareSave> <SvgIcon src={SaveSVG} /> Save </ButtonShareSave>
+              <ButtonShareSave onClick={ () => {toggleFavorite()}}> <SvgIcon src={ShareSVG} /> Share  </ButtonShareSave>
+              <ButtonShareSave onClick={ () => {toggleFavorite()}}>  {favorite} </ButtonShareSave>
             </ShareSaveContainer>
           </DetailContainer>
         </FlexContainer>
@@ -190,8 +201,8 @@ const TitleBar = ({ data }) => {
 
 TitleBar.propTypes = {
   data: PropTypes.object,
+  toggleFavorite: PropTypes.func,
+
 };
 
 export default TitleBar;
-
-{/* <img src={SaveSVG}/> */ }
