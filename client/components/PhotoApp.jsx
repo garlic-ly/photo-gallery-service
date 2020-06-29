@@ -24,7 +24,7 @@ const Body = styled.div`
   background-color: #fff;
 `;
 
-class App extends React.Component {
+class PhotoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -164,4 +164,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default PhotoApp;
