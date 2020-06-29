@@ -6,7 +6,7 @@ const app = express();
 const port = 3002;
 const controllers = require('./controllers.js');
 
-app.use('/rooms/:id', express.static(path.join(__dirname, '../client/dist')))
+app.use('/rooms/:id', express.static(path.join(__dirname, '../public/')));
 
 app.listen(port, () => console.log(`The app listening at http://localhost:${port}`));
 
