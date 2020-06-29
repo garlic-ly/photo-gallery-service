@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import SaveSVG from '../icons/save.svg';
 import SavedSVG from '../icons/saved.svg';
 import ShareSVG from '../icons/share.svg';
 import SuperhostSVG from '../icons/superhost.svg';
 import StarPNG from '../icons/star.png';
-
 
 const WrapperTitleBar = styled.div`
   display: block;
@@ -90,29 +88,6 @@ const SpanLocation = styled.span`
   text-decoration: underline;
 `;
 
-const ButtonReview = styled.span`
-  cursor:pointer;
-  color: #717171;
-  font-size: 14px;
-  line-height: 20px;
-  color: #222222;
-`;
-
-const ButtonSuperhost = styled.span`
-  color: #717171;
-  font-size: 14px;
-  line-height: 20px;
-`;
-
-const ButtonLocation = styled.span`
-  cursor: pointer;
-  color: #717171;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: bold;
-  text-decoration: underline;
-`;
-
 const ButtonShareSave = styled.div`
   display: inline-block;
   cursor: pointer;
@@ -157,52 +132,85 @@ const PngIcon = styled.img`
   cursor: pointer;
 `;
 
-
 const TitleBar = ({ data, toggleFavorite }) => {
   const isSuperhost = () => {
-    if (data.is_superhost) {
-      return (<span>  · <SvgIconSuperhost src={SuperhostSVG} /> Superhost · </span>)
-    } else {
-      return (" · ")
+    if (data.isSuperhost) {
+      return (
+        <span>
+          ·
+          <SvgIconSuperhost src={SuperhostSVG} />
+          Superhost ·
+        </span>
+      );
     }
+    // eslint-disable-next-line no-unreachable
+    return (' · ');
   };
 
   const superhost = isSuperhost();
 
   const isFavorite = () => {
-    if (data.is_favorite) {
-      return (<span><SvgIcon src={SavedSVG} /> Saved </span>)
-    } else {
-      return (<span><SvgIcon src={SaveSVG} /> Save </span>)
+    if (data.isFavorite) {
+      return (
+        <span>
+          <SvgIcon src={SavedSVG} />
+          Saved
+        </span>
+      );
     }
-  }
+    return (
+      <span>
+        <SvgIcon src={SaveSVG} />
+        Save
+      </span>
+    );
+  };
 
   const favorite = isFavorite();
 
   return (
     <WrapperTitleBar>
       <Section>
-        <Title> {data.room_name.slice(0, 1).toUpperCase() + data.room_name.slice(1)} </Title>
+        <Title>
+          {data.roomName.slice(0, 1).toUpperCase() + data.roomName.slice(1)}
+        </Title>
         <FlexContainer>
           <DetailContainer>
-            <SpanReview><span> <PngIcon src={StarPNG} /> </span>{data.average_review_point} ({data.number_of_reviews})  </SpanReview>
-             {superhost}
-            <SpanLocation>  {data.location_city}, {data.location_country}</SpanLocation>
+            <SpanReview>
+              <span>
+                <PngIcon src={StarPNG} />
+              </span>
+              {data.averageReviewRoint}
+              (
+              {data.numberOfReviews}
+              )
+            </SpanReview>
+            {superhost}
+            <SpanLocation>
+              {data.locationCity}
+              ,
+              {data.locationCountry}
+            </SpanLocation>
             <ShareSaveContainer>
-              <ButtonShareSave onClick={ () => {toggleFavorite()}}> <SvgIcon src={ShareSVG} /> Share  </ButtonShareSave>
-              <ButtonShareSave onClick={ () => {toggleFavorite()}}>  {favorite} </ButtonShareSave>
+              <ButtonShareSave onClick={() => { toggleFavorite(); }}>
+                <SvgIcon src={ShareSVG} />
+                Share
+              </ButtonShareSave>
+              <ButtonShareSave onClick={() => { toggleFavorite(); }}>
+                {favorite}
+              </ButtonShareSave>
             </ShareSaveContainer>
           </DetailContainer>
         </FlexContainer>
       </Section>
     </WrapperTitleBar>
-  )
+  );
 };
 
 TitleBar.propTypes = {
-  data: PropTypes.object,
-  toggleFavorite: PropTypes.func,
-
+  // eslint-disable-next-line react/forbid-prop-types
+  data: PropTypes.object.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
 };
 
 export default TitleBar;

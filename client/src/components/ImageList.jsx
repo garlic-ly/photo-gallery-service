@@ -204,47 +204,50 @@ const BottomDescriptionContainer = styled.div`
   font-size:14px;
 `;
 
-class ImageList extends React.Component{
+class ImageList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentImageIndex: props.clickedPhoto,
-      isItFirst: false,
     };
     this.nextImage = this.nextImage.bind(this);
     this.previousImage = this.previousImage.bind(this);
     this.isFavorite = this.isFavorite.bind(this);
   }
 
-  nextImage () {
-    const next = this.state.currentImageIndex + 1;
-    if (next < this.props.images.length) {
+  nextImage() {
+    const { currentImageIndex } = this.state;
+    const { images } = this.props;
+    const next = currentImageIndex + 1;
+    if (next < images.length) {
       this.setState({
-        currentImageIndex: next
-      })
+        currentImageIndex: next,
+      });
     }
   }
 
-  previousImage () {
-    const previous = this.state.currentImageIndex - 1;
+  previousImage() {
+    const { currentImageIndex } = this.state;
+    const previous = currentImageIndex - 1;
     if (previous >= 0) {
       this.setState({
-        currentImageIndex: previous
-      })
+        currentImageIndex: previous,
+      });
     }
   }
 
-  isFavorite () {
-    if (this.props.isFavorite) {
-      return (<SvgIcon src={SavedSVG} onClick={() => {this.props.toggleFavorite()}}/>)
-    } else {
-      return (<SvgIcon src={SaveSVG} onClick={() => {this.props.toggleFavorite()}}/>)
+  isFavorite() {
+    const { isFavorite, toggleFavorite } = this.props;
+    if (isFavorite) {
+      return (<SvgIcon src={SavedSVG} onClick={() => { toggleFavorite(); }} />);
     }
+    return (<SvgIcon src={SaveSVG} onClick={() => { toggleFavorite(); }} />);
   }
 
   render() {
     const favorite = this.isFavorite();
-
+    const { currentImageIndex } = this.state;
+    const { images, imageDesc, toggle } = this.props;
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -253,20 +256,31 @@ class ImageList extends React.Component{
             <CloseButtonContainer>
               <CloseButton>
                 <InsideCloseButton onClick={() => {
-                  this.props.toggle();
-                }}>
+                  toggle();
+                }}
+                >
                   <CrossSvg src={Xmark} />
                   <span> Close </span>
                 </InsideCloseButton>
               </CloseButton>
             </CloseButtonContainer>
 
-            <Counter> {this.state.currentImageIndex + 1}/{this.props.images.length} </Counter>
+            <Counter>
+              {currentImageIndex + 1}
+              /
+              {images.length}
+            </Counter>
 
             <ShareSave>
               <ShareSaveContainer>
-                <ButtonShareSave> <SvgIcon src={ShareSVG} />  </ButtonShareSave>
-                <ButtonShareSave> {favorite} </ButtonShareSave>
+                <ButtonShareSave>
+                  <SvgIcon
+                    src={ShareSVG}
+                  />
+                </ButtonShareSave>
+                <ButtonShareSave>
+                  {favorite}
+                </ButtonShareSave>
               </ShareSaveContainer>
             </ShareSave>
           </Header>
@@ -281,12 +295,12 @@ class ImageList extends React.Component{
             </NextPreviousContainer>
 
             <ImageWrapper>
-          <ImageFlexCon>
-            <ImageContainer>
-              <CurrentImage src={this.props.images[this.state.currentImageIndex]} />
-            </ImageContainer>
-          </ImageFlexCon>
-        </ImageWrapper>
+              <ImageFlexCon>
+                <ImageContainer>
+                  <CurrentImage src={images[currentImageIndex]} />
+                </ImageContainer>
+              </ImageFlexCon>
+            </ImageWrapper>
 
             <NextPreviousContainer>
               <NextPreviousButton onClick={this.nextImage}>
@@ -298,23 +312,22 @@ class ImageList extends React.Component{
 
         <BottomWrapper>
           <BottomDescriptionContainer>
-            {this.props.image_desc[this.state.currentImageIndex]}
+            {imageDesc[currentImageIndex]}
           </BottomDescriptionContainer>
         </BottomWrapper>
 
       </Wrapper>
-    )
+    );
   }
-};
+}
 
-
-ImageList.propTypesc= {
-  images: PropTypes.array,
-  image_desc: PropTypes.array,
-  toggle: PropTypes.func,
-  clickedPhoto: PropTypes.number,
-  isFavorite: PropTypes.number,
-  toggleFavorite: PropTypes.func,
+ImageList.propTypes = {
+  images: PropTypes.array.isRequired,
+  imageDesc: PropTypes.array.isRequired,
+  toggle: PropTypes.func.isRequired,
+  clickedPhoto: PropTypes.number.isRequired,
+  isFavorite: PropTypes.number.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
 };
 
 export default ImageList;
