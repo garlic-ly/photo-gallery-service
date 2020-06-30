@@ -47,7 +47,7 @@ class PhotoApp extends React.Component {
   }
 
   getRoomData(id) {
-    axios.get(`/api/rooms/${id}`)
+    axios.get(`/api/photos/${id}`)
       .then((result) => {
         const { data } = result;
         const imagesArr = [];
@@ -103,7 +103,7 @@ class PhotoApp extends React.Component {
     const { isFavorite } = this.state;
     axios({
       method: 'patch',
-      url: `/api/rooms/${id}`,
+      url: `/api/photos/${id}`,
       data: {
         isFavorite: !isFavorite,
       },

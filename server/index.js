@@ -12,10 +12,10 @@ app.listen(port, () => console.log(`The app listening at http://localhost:${port
 
 app.use(bodyParser.json());
 
-app.get('/api/rooms/:id', (req, res) => {
+app.get('/api/photos/:id', (req, res) => {
   controllers.get(req, res);
 });
 
-app.patch('/api/rooms/:id', (req, res) => {
+app.patch('/api/photos/:id', (req, res) => {
   controllers.patch(req, res);
 });
